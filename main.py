@@ -42,7 +42,7 @@ class MainApp(App):
         
         btnAdd = Button(text="Add Up") #, size_hint=(None, None)
                 
-        self.label1 = Label(text='', pos_hint={'center_x': .5, 'center_y': .5})
+        self.label1 = Label(text='1', pos_hint={'center_x': .5, 'center_y': .5})
         #self.label2 = Label(text='', pos_hint={'center_x': .5, 'center_y': .5})
         
             #Main Layout
