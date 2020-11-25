@@ -17,7 +17,7 @@ from kivy.uix.textinput import TextInput
 
 food_dict = {'Сырок':140, 'Апельсин':0.43, 'Яйцо':80, 'Уй':160, 'Стандарт': 1} # 
 coefficient = ''
-mainmenuFsize = 40
+mainmenuFsize = 150
            
 class MainApp(App):
     def build(self):
@@ -37,7 +37,7 @@ class MainApp(App):
         
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         
-        self.textinput = TextInput(text='', multiline=False, font_size=160, size_hint=(0.2, 0.5)) #
+        self.textinput = TextInput(text='', multiline=False, font_size=170, size_hint=(0.2, 0.5)) #
         
         btnAdd = Button(text="Add Up", font_size=mainmenuFsize, size_hint=(0.2, 0.5)) #, size_hint=(None, None)
                 
