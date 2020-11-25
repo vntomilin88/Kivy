@@ -25,7 +25,7 @@ class MainApp(App):
             #Elements        
         img = Image(source='Fenix.jpg')
         
-        self.label = Label(text='0', font_size=160, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
+        self.label = Label(text='0', font_size=200, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
         
         dropdown = DropDown()
         for key in food_dict:
@@ -53,11 +53,16 @@ class MainApp(App):
         layoutAux.add_widget(self.mainbutton)
         layoutAux.add_widget(self.textinput)
         layoutAux.add_widget(btnAdd)
+        layoutAux1 = BoxLayout(padding=10, orientation='horizontal')
+        layoutAux2 = BoxLayout(padding=10, orientation='horizontal')
+        layoutAux3 = BoxLayout(padding=10, orientation='horizontal')
         
         layoutMain.add_widget(img)
         layoutMain.add_widget(layoutPri)
         layoutMain.add_widget(layoutAux)
-        
+        layoutMain.add_widget(layoutAux1)
+        layoutMain.add_widget(layoutAux2)
+        layoutMain.add_widget(layoutAux3)
         
         btnAdd.bind(on_press=self.on_press_button)
         self.mainbutton.bind(on_release=dropdown.open)
