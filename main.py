@@ -30,7 +30,7 @@ class MainApp(App):
         dropdown = DropDown()
         for key in food_dict:
             
-            btn = Button(text=key, size_hint_y=None, height=100) #
+            btn = Button(text=key, size_hint_y=None, height=80) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)
         
@@ -38,9 +38,12 @@ class MainApp(App):
         
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         
-        btnAdd = Button(text="Add Up") #, size_hint=(None, None)
-        
         self.textinput = TextInput(text='', multiline=False, font_size=120) #, size_hint=(0.3, 0.2)
+        
+        btnAdd = Button(text="Add Up") #, size_hint=(None, None)
+                
+        self.label1 = Label(text='', pos_hint={'center_x': .5, 'center_y': .5})
+        #self.label2 = Label(text='', pos_hint={'center_x': .5, 'center_y': .5})
         
             #Main Layout
         layoutMain = BoxLayout(padding=10, orientation='vertical')
@@ -49,20 +52,22 @@ class MainApp(App):
         layoutPri = BoxLayout(padding=10, orientation='horizontal')
         layoutPri.add_widget(self.label)
             #Auxilary Layout
-        layoutAux = BoxLayout(padding=10, orientation='horizontal') #
+        layoutAux = BoxLayout(padding=10, orientation='horizontal')
         layoutAux.add_widget(self.mainbutton)
         layoutAux.add_widget(self.textinput)
         layoutAux.add_widget(btnAdd)
+            #Auxilary 1 Layout
         layoutAux1 = BoxLayout(padding=10, orientation='horizontal')
-        layoutAux2 = BoxLayout(padding=10, orientation='horizontal')
-        layoutAux3 = BoxLayout(padding=10, orientation='horizontal')
+        layoutAux1.add_widget(self.label1)
+            #Auxilary 2 Layout
+        #layoutAux2 = BoxLayout(padding=10, orientation='horizontal')
+        #layoutAux2.add_widget(self.label2)
         
         layoutMain.add_widget(img)
         layoutMain.add_widget(layoutPri)
         layoutMain.add_widget(layoutAux)
         layoutMain.add_widget(layoutAux1)
-        layoutMain.add_widget(layoutAux2)
-        layoutMain.add_widget(layoutAux3)
+        #layoutMain.add_widget(layoutAux2)
         
         btnAdd.bind(on_press=self.on_press_button)
         self.mainbutton.bind(on_release=dropdown.open)
