@@ -17,7 +17,7 @@ from kivy.uix.textinput import TextInput
 
 food_dict = {'Сырок':140, 'Апельсин':0.43, 'Яйцо':80, 'Уй':160, 'Стандарт': 1} # 
 coefficient = ''
-mainmenuFsize = 150
+mainmenuFsize = 100
            
 class MainApp(App):
     def build(self):
