@@ -29,17 +29,17 @@ class MainApp(App):
         dropdown = DropDown()
         for key in food_dict:
             
-            btn = Button(text=key, size_hint_y=None, height=100) #
+            btn = Button(text=key, font_size=60, size_hint_y=None, height=100) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)
         
-        self.mainbutton = Button(text='Стандарт') #, size_hint=(0.3, None)
+        self.mainbutton = Button(text='Стандарт', font_size=60) #, size_hint=(0.3, None)
         
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         
         self.textinput = TextInput(text='', multiline=False, font_size=160) #, size_hint=(0.3, 0.2)
         
-        btnAdd = Button(text="Add Up") #, size_hint=(None, None)
+        btnAdd = Button(text="Add Up", font_size=60) #, size_hint=(None, None)
                 
         self.label1 = Label(text='Filler', color=(0,0,0,255), pos_hint={'center_x': .5, 'center_y': .5})
         self.label2 = Label(text='Filler', color=(0,0,0,255), pos_hint={'center_x': .5, 'center_y': .5})
