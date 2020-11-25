@@ -15,7 +15,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 
 
-food_dict = {'Сырок': 140, 'Апельсин': 0.43, 'Яйцо': 80}
+food_dict = {'Сырок': 140, 'Апельсин': 0.43, 'Яйцо': 80, '': 1}
 coefficient = ''
 
            
@@ -29,7 +29,7 @@ class MainApp(App):
         dropdown = DropDown()
         for key in food_dict:
             
-            btn = Button(text=key, size_hint_y=None, height=120) #
+            btn = Button(text=key, size_hint_y=None, height=100) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)
         
