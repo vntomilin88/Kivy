@@ -15,7 +15,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 
 
-food_dict = {'Сырок': 140, 'Апельсин': 0.43, 'Яйцо': 80, '': 1}
+food_dict = {'Сырок': 140, 'Апельсин': 0.43, '': 1} #'Яйцо': 80, 
 coefficient = ''
 
            
