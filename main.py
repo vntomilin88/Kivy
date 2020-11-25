@@ -41,7 +41,7 @@ class MainApp(App):
         
         btnAdd = Button(text="Add Up") #, size_hint=(None, None)
                 
-        #self.label1 = Label(text='1', pos_hint={'center_x': .5, 'center_y': .5})
+        self.label1 = Label(text='Filler', pos_hint={'center_x': .5, 'center_y': .5})
         #self.label2 = Label(text='', pos_hint={'center_x': .5, 'center_y': .5})
         
             #Main Layout
@@ -56,8 +56,8 @@ class MainApp(App):
         layoutAux.add_widget(self.textinput)
         layoutAux.add_widget(btnAdd)
             #Auxilary 1 Layout
-        #layoutAux1 = BoxLayout(padding=10, orientation='horizontal')
-        #layoutAux1.add_widget(self.label1)
+        layoutAux1 = BoxLayout(padding=10, orientation='horizontal')
+        layoutAux1.add_widget(self.label1)
             #Auxilary 2 Layout
         #layoutAux2 = BoxLayout(padding=10, orientation='horizontal')
         #layoutAux2.add_widget(self.label2)
@@ -65,7 +65,7 @@ class MainApp(App):
         layoutMain.add_widget(img)
         layoutMain.add_widget(layoutPri)
         layoutMain.add_widget(layoutAux)
-        #layoutMain.add_widget(layoutAux1)
+        layoutMain.add_widget(layoutAux1)
         #layoutMain.add_widget(layoutAux2)
         
         btnAdd.bind(on_press=self.on_press_button)
