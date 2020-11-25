@@ -17,7 +17,7 @@ from kivy.uix.textinput import TextInput
 
 food_dict = {'Сырок':140, 'Апельсин':0.43, 'Яйцо':80, 'Уй':160, 'Стандарт': 1} # 
 coefficient = ''
-mainmenuFsize = 100
+mainmenuFsize = 80
            
 class MainApp(App):
     def build(self):
@@ -29,7 +29,7 @@ class MainApp(App):
         dropdown = DropDown()
         for key in food_dict:
             
-            btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=100) #
+            btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)
         
@@ -39,7 +39,7 @@ class MainApp(App):
         
         self.textinput = TextInput(text='', multiline=False, font_size=170, size_hint=(0.2, 0.5)) #
         
-        btnAdd = Button(text="Add Up", font_size=mainmenuFsize, size_hint=(0.2, 0.5)) #, size_hint=(None, None)
+        btnAdd = Button(text="+", font_size=mainmenuFsize, size_hint=(0.2, 0.5)) #, size_hint=(None, None)
                 
         self.label1 = Label(text='Filler', color=(0,0,0,255), pos_hint={'center_x': .5, 'center_y': .5})
         self.label2 = Label(text='Filler', color=(0,0,0,255), pos_hint={'center_x': .5, 'center_y': .5})
