@@ -24,7 +24,7 @@ class MainApp(App):
             #Elements        
         img = Image(source='Fenix.jpg')
         
-        self.label = Label(text='0', font_size=250, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
+        self.label = Label(text='0', font_size=350, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
         
         dropdown = DropDown()
         for key in food_dict:
