@@ -24,12 +24,12 @@ class MainApp(App):
             #Elements        
         img = Image(source='Fenix.jpg')
         
-        self.label = Label(text='0', font_size=180, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
+        self.label = Label(text='0', font_size=200, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
         
         dropdown = DropDown()
         for key in food_dict:
             
-            btn = Button(text=key, size_hint_y=None, height=80) #
+            btn = Button(text=key, size_hint_y=None, height=100) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)
         
@@ -37,7 +37,7 @@ class MainApp(App):
         
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         
-        self.textinput = TextInput(text='', multiline=False, font_size=120) #, size_hint=(0.3, 0.2)
+        self.textinput = TextInput(text='', multiline=False, font_size=160) #, size_hint=(0.3, 0.2)
         
         btnAdd = Button(text="Add Up") #, size_hint=(None, None)
                 
