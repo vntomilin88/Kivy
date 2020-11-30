@@ -57,8 +57,6 @@ class MainApp(App):
         
         self.textinput1 = TextInput(text='', multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
-        self.dropdownmenu(food_dict)
-        
         self.mainbutton = Button(text='Стандарт', font_size=mainmenuFsize, size_hint=(0.5, 0.5)) #
         
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
@@ -109,6 +107,8 @@ class MainApp(App):
                    
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         self.textinput1.bind(text=menucreator, on_text_validate=reset)
+        
+        self.dropdownmenu(food_dict)
         
         return layoutMain
                     
