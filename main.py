@@ -32,9 +32,9 @@ dropdown = DropDown()
 class MainApp(App):
     food_sorter = {}
     def sorter(self):
-        if self.textinput1.text == '':
-            self.food_sorter = food_dict
-        else:
+        # if self.textinput1.text == '':
+        #     self.food_sorter = food_dict
+        # else:
             for key,value in food_dict.items():
                 if key[0] == self.textinput1.text.upper():
                     self.food_sorter[key]=value
@@ -117,6 +117,7 @@ class MainApp(App):
             self.label.text = str(round(float(self.label.text) + float(self.textinput.text)*food_dict[self.mainbutton.text][0]))
             self.textinput.text = ''
             self.textinput1.text = ''
+            self.dropdownmenu(food_dict)
         else:
             pass
 
