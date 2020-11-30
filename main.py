@@ -5,7 +5,6 @@ Created on Fri Nov 13 00:48:54 2020
 @author: vntom
 """
 import kivy
-import time
 
 from kivy.app import App
 from kivy.uix.label import Label
@@ -27,7 +26,6 @@ food_dict = {
              'Стандарт':(1,0,0,0)} #'Название':(калории, белки, жиры, углеводы)
 
 mainmenuFsize = 80
-
 
 dropdown = DropDown()
            
@@ -102,7 +100,7 @@ class MainApp(App):
             self.dropdownmenu(food_dict)
         
         def menucreator(*args):
-            if self.textinput1.text.upper() == '':
+            if self.textinput1.text == '':
                 self.dropdownmenu(food_dict)
             else:
                 self.food_sorter = {}
