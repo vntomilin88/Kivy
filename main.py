@@ -102,9 +102,12 @@ class MainApp(App):
             self.dropdownmenu(food_dict)
         
         def menucreator(*args):
-            self.food_sorter = {}
-            self.sorter()
-            self.dropdownmenu(self.food_sorter)
+            if self.textinput1.text.upper() == '':
+                self.dropdownmenu(food_dict)
+            else:
+                self.food_sorter = {}
+                self.sorter()
+                self.dropdownmenu(self.food_sorter)
                    
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         self.textinput1.bind(text=menucreator, on_text_validate=reset)
