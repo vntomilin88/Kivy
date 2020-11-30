@@ -53,19 +53,19 @@ class MainApp(App):
         
         self.label = Label(text='0', font_size=320, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
         
-        self.textinput1 = TextInput(text='', multiline=False, font_size=170, size_hint=(0.05, 0.5))
+        self.textinput1 = TextInput(text='', multiline=False, font_size=25, size_hint=(0.125, 0.5))
         
         self.dropdownmenu(food_dict)
         
-        self.mainbutton = Button(text='Стандарт', font_size=mainmenuFsize, size_hint=(0.55, 0.5)) #
+        self.mainbutton = Button(text='Стандарт', font_size=mainmenuFsize, size_hint=(0.5, 0.5)) #
         
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         
-        self.textinput = TextInput(text='', multiline=False, font_size=170, size_hint=(0.3, 0.5)) #
+        self.textinput = TextInput(text='', multiline=False, font_size=170, size_hint=(0.25, 0.5)) #
         
-        btnAdd = Button(text='+', font_size=mainmenuFsize, size_hint=(0.10, 0.5)) #, size_hint=(None, None)
+        btnAdd = Button(text='+', font_size=mainmenuFsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
                 
-        self.label1 = Label(text='Filler', pos_hint={'center_x': .5, 'center_y': .5}) #color=(0,0,0,255), 
+        self.label1 = Label(text='Filler', color=(0,0,0,255), pos_hint={'center_x': .5, 'center_y': .5}) # 
         self.label2 = Label(text='Filler', color=(0,0,0,255), pos_hint={'center_x': .5, 'center_y': .5})
         
             #Main Layout
@@ -98,6 +98,7 @@ class MainApp(App):
         
         def reset(*args):
             self.textinput1.text = ''
+            self.dropdownmenu(food_dict)
         
         def menucreator(*args):
             self.food_sorter = {}
