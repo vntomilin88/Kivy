@@ -5,6 +5,7 @@ Created on Fri Nov 13 00:48:54 2020
 @author: vntom
 """
 import kivy
+import time
 
 from kivy.app import App
 from kivy.uix.label import Label
@@ -53,7 +54,7 @@ class MainApp(App):
         
         self.label = Label(text='0', font_size=320, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
         
-        self.textinput1 = TextInput(text='', multiline=False, font_size=25, size_hint=(0.125, 0.5))
+        self.textinput1 = TextInput(text='', multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
         self.dropdownmenu(food_dict)
         
@@ -104,7 +105,6 @@ class MainApp(App):
             self.food_sorter = {}
             self.sorter()
             self.dropdownmenu(self.food_sorter)
-           
                    
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         self.textinput1.bind(text=menucreator, on_text_validate=reset)
@@ -115,6 +115,7 @@ class MainApp(App):
         if self.textinput.text.isdigit() == True:
             self.label.text = str(round(float(self.label.text) + float(self.textinput.text)*food_dict[self.mainbutton.text][0]))
             self.textinput.text = ''
+            self.textinput1.text = ''
         else:
             pass
 
