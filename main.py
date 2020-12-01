@@ -30,7 +30,7 @@ mainmenuFsize = 80
 dropdown = DropDown()
            
 class MainApp(App):
-    food_sorter = {}
+    food_sorter = food_dict
     def sorter(self):
         # if self.textinput1.text == '':
         #     self.food_sorter = food_dict
