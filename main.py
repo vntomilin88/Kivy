@@ -23,7 +23,8 @@ food_dict = {
              'Уй':(160,1/141,8/141,19/141),   
              #Сладкое
              'Мёд':(60/21,0,0,17/21), 'Эклер':(43.33,0.67,2.67,6), 'Профитроль':(45,0.67,3.5,2.67),
-             'Стандарт':(1,0,0,0)} #'Название':(калории, белки, жиры, углеводы)
+             'Стандарт':(1,0,0,0), #'Название':(калории, белки, жиры, углеводы)
+             '':(0,0,0,0)}
 
 mainmenuFsize = 80
 
@@ -47,7 +48,7 @@ class MainApp(App):
         for key in dictionary:
             btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
-            dropdown.add_widget(btn)        
+            dropdown.add_widget(btn)  
         
     def build(self):
             #Elements        
