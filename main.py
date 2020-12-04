@@ -98,12 +98,10 @@ class MainApp(App):
             self.dropdownmenu(food_dict)
         
         def menucreator(*args):
-            if self.food_sorter == {}:
-                self.dropdownmenu(food_dict)
-            else:
-                self.food_sorter = {}
-                self.sorter()
-                self.dropdownmenu(self.food_sorter)
+            self.food_sorter = {}
+            self.sorter()
+            #self.dropdownmenu(self.food_sorter)
+            self.dropdownmenu(food_dict)
                    
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         self.textinput1.bind(text=menucreator, on_text_validate=reset)
@@ -122,5 +120,4 @@ class MainApp(App):
             pass
     
 if __name__ == '__main__':
-    app = MainApp()
-    app.run()
+    MainApp().run()
