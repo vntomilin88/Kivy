@@ -23,8 +23,7 @@ food_dict = {
              'Уй':(160,1/141,8/141,19/141),   
              #Сладкое
              'Мёд':(60/21,0,0,17/21), 'Эклер':(43.33,0.67,2.67,6), 'Профитроль':(45,0.67,3.5,2.67),
-             'Стандарт':(1,0,0,0), #'Название':(калории, белки, жиры, углеводы)
-             '':(0,0,0,0)}
+             'Стандарт':(1,0,0,0)} #'Название':(калории, белки, жиры, углеводы)}
 
 mainmenuFsize = 80
 
@@ -33,14 +32,11 @@ dropdown = DropDown()
 class MainApp(App):
     food_sorter = food_dict
     def sorter(self):
-        # if self.textinput1.text == '':
-        #     self.food_sorter = food_dict
-        # else:
-            for key,value in food_dict.items():
-                if key[0] == self.textinput1.text.upper():
-                    self.food_sorter[key]=value
-                else:
-                    pass
+        for key,value in food_dict.items():
+            if key[0] == self.textinput1.text.upper():
+                self.food_sorter[key]=value
+            else:
+                pass
                 
     def dropdownmenu(self, dictionary, *args):
         dropdown.clear_widgets()
@@ -102,9 +98,12 @@ class MainApp(App):
             self.dropdownmenu(food_dict)
         
         def menucreator(*args):
-            self.food_sorter = {}
-            self.sorter()
-            self.dropdownmenu(self.food_sorter)
+            if self.textinput1.text == '':
+                self.dropdownmenu(food_dict)
+            else:
+                self.food_sorter = {}
+                self.sorter()
+                self.dropdownmenu(self.food_sorter)
                    
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         self.textinput1.bind(text=menucreator, on_text_validate=reset)
