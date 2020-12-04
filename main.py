@@ -38,8 +38,11 @@ class MainApp(App):
             else:
                 pass
                 
-    def dropdownmenu(self, dictionary, *args):
-        #dropdown.clear_widgets()
+    def dropdownmenu(self, dictionary, x, *args):
+        if x == 0:
+            dropdown.clear_widgets()
+        else:
+            pass
                 
         for key in dictionary:
             btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
@@ -95,18 +98,17 @@ class MainApp(App):
         
         def reset(*args):
             self.textinput1.text = ''
-            self.dropdownmenu(food_dict)
+            self.dropdownmenu(food_dict, 0)
         
         def menucreator(*args):
             self.food_sorter = {}
             self.sorter()
-            self.dropdownmenu(self.food_sorter)
-            #self.dropdownmenu(food_dict)
+            self.dropdownmenu(self.food_sorter, 0)
                    
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         self.textinput1.bind(text=menucreator, on_text_validate=reset)
         
-        self.dropdownmenu(food_dict)
+        self.dropdownmenu(food_dict, 1)
         
         return layoutMain
                     
@@ -115,7 +117,7 @@ class MainApp(App):
             self.label.text = str(round(float(self.label.text) + float(self.textinput.text)*food_dict[self.mainbutton.text][0]))
             self.textinput.text = ''
             self.textinput1.text = ''
-            self.dropdownmenu(food_dict)
+            self.dropdownmenu(food_dict, 0)
         else:
             pass
     
