@@ -98,7 +98,7 @@ class MainApp(App):
             self.dropdownmenu(food_dict)
         
         def menucreator(*args):
-            if self.textinput1.text == '':
+            if self.food_sorter == {}:
                 self.dropdownmenu(food_dict)
             else:
                 self.food_sorter = {}
@@ -120,8 +120,7 @@ class MainApp(App):
             self.dropdownmenu(food_dict)
         else:
             pass
-
-        
+    
 if __name__ == '__main__':
     app = MainApp()
     app.run()
