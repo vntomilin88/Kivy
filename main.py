@@ -26,12 +26,15 @@ food_dict = {
              'Мёд':(60/21,0,0,17/21), 'Эклер':(43.33,0.67,2.67,6), 'Профитроль':(45,0.67,3.5,2.67),
              'Стандарт':(1,0,0,0)} #'Название':(калории, белки, жиры, углеводы)}
 
+food_sorter = {}
+childrenlist = []
+
 mainmenuFsize = 80
 
 dropdown = DropDown()
            
 class MainApp(App):
-    food_sorter = food_dict
+
     def sorter(self):
         for key,value in food_dict.items():
             if key[0] == self.textinput1.text.upper():
@@ -40,18 +43,24 @@ class MainApp(App):
                 pass
                 
     def dropdownmenu(self, dictionary, *args):
+        for key in food_dict:
+            btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
+            btn.bind(on_release=lambda btn: dropdown.select(btn.text))
+            dropdown.add_widget(btn)
+        
+        dropdown.clear_widgets()
         
         for key in dictionary:
             btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
-            dropdown.add_widget(btn)  
+            dropdown.add_widget(btn)            
     
-    def dropdownmenustart(self, *args):
+    # def dropdownmenureset(self, *args):
                 
-        for key in food_dict:
-            btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
-            btn.bind(on_release=lambda btn: dropdown.select(btn.text))
-            dropdown.add_widget(btn)  
+    #     for key in food_dict:
+    #         btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
+    #         #btn.bind(on_release=lambda btn: dropdown.select(btn.text))
+    #         dropdown.remove_widget(btn)
         
     def build(self):
             #Elements        
@@ -101,12 +110,12 @@ class MainApp(App):
         self.mainbutton.bind(on_release=dropdown.open)
         
         def reset(*args):
-            
             self.textinput1.text = ''
+            #self.dropdownmenureset()
             self.dropdownmenu(food_dict)
         
         def menucreator(*args):
-            dropdown.clear_widgets()
+            #dropdown.clear_widgets()
             self.food_sorter = {}
             self.sorter()
             self.dropdownmenu(self.food_sorter)
@@ -114,7 +123,7 @@ class MainApp(App):
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         self.textinput1.bind(text=menucreator, on_text_validate=reset)
         
-        self.dropdownmenustart()
+        self.dropdownmenu(food_dict)
         
         return layoutMain
                     
