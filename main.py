@@ -41,8 +41,6 @@ class MainApp(App):
                 
     def dropdownmenu(self, dictionary, *args):
         
-        dropdown.clear_widgets()    
-        
         for key in dictionary:
             btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
@@ -103,10 +101,12 @@ class MainApp(App):
         self.mainbutton.bind(on_release=dropdown.open)
         
         def reset(*args):
+            
             self.textinput1.text = ''
             self.dropdownmenu(food_dict)
         
         def menucreator(*args):
+            dropdown.clear_widgets()
             self.food_sorter = {}
             self.sorter()
             self.dropdownmenu(self.food_sorter)
