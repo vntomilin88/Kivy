@@ -4,6 +4,7 @@ Created on Fri Nov 13 00:48:54 2020
 
 @author: vntom
 """
+
 import kivy
 
 from kivy.app import App
@@ -38,13 +39,18 @@ class MainApp(App):
             else:
                 pass
                 
-    def dropdownmenu(self, dictionary, x, *args):
-        if x == 0:
-            dropdown.clear_widgets()
-        else:
-            pass
-                
+    def dropdownmenu(self, dictionary, *args):
+        
+        dropdown.clear_widgets()    
+        
         for key in dictionary:
+            btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
+            btn.bind(on_release=lambda btn: dropdown.select(btn.text))
+            dropdown.add_widget(btn)  
+    
+    def dropdownmenustart(self, *args):
+                
+        for key in food_dict:
             btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)  
@@ -98,17 +104,17 @@ class MainApp(App):
         
         def reset(*args):
             self.textinput1.text = ''
-            self.dropdownmenu(food_dict, 0)
+            self.dropdownmenu(food_dict)
         
         def menucreator(*args):
             self.food_sorter = {}
             self.sorter()
-            self.dropdownmenu(self.food_sorter, 0)
+            self.dropdownmenu(self.food_sorter)
                    
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         self.textinput1.bind(text=menucreator, on_text_validate=reset)
         
-        self.dropdownmenu(food_dict, 1)
+        self.dropdownmenustart()
         
         return layoutMain
                     
@@ -117,7 +123,7 @@ class MainApp(App):
             self.label.text = str(round(float(self.label.text) + float(self.textinput.text)*food_dict[self.mainbutton.text][0]))
             self.textinput.text = ''
             self.textinput1.text = ''
-            self.dropdownmenu(food_dict, 0)
+            self.dropdownmenu(food_dict)
         else:
             pass
     
