@@ -43,10 +43,10 @@ class MainApp(App):
                 pass
                 
     def dropdownmenu(self, dictionary, *args):
-        for key in food_dict:
-            btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
-            btn.bind(on_release=lambda btn: dropdown.select(btn.text))
-            dropdown.add_widget(btn)
+        # for key in food_dict:
+        #     btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
+        #     btn.bind(on_release=lambda btn: dropdown.select(btn.text))
+        #     dropdown.add_widget(btn)
         
         dropdown.clear_widgets()
         
@@ -68,13 +68,13 @@ class MainApp(App):
         
         self.label = Label(text='0', font_size=320, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
         
-        self.textinput1 = TextInput(multiline=False, font_size=170, size_hint=(0.125, 0.5))
+        self.textinput1 = TextInput(text='а', multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
         self.mainbutton = Button(text='Стандарт', font_size=mainmenuFsize, size_hint=(0.5, 0.5)) #
         
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         
-        self.textinput = TextInput(multiline=False, font_size=170, size_hint=(0.25, 0.5)) #text='',
+        self.textinput = TextInput(multiline=False, font_size=170, size_hint=(0.25, 0.5)) 
         
         btnAdd = Button(text='+', font_size=mainmenuFsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
                 
