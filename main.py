@@ -57,7 +57,7 @@ class MainApp(App):
         
         self.label = Label(text='0', font_size=320, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
         
-        self.textinput1 = TextInput(text='', multiline=False, font_size=170, size_hint=(0.125, 0.5))
+        self.textinput1 = TextInput(text='а', multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
         self.mainbutton = Button(text='Стандарт', font_size=mainmenuFsize, size_hint=(0.5, 0.5)) #
         
@@ -108,11 +108,14 @@ class MainApp(App):
             self.food_sorter = {}
             self.sorter()
             self.dropdownmenu(self.food_sorter)
+            
                    
         dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
         self.textinput1.bind(text=menucreator, on_text_validate=reset)
         
+        self.textinput1.text = ''
         self.dropdownmenu(food_dict)
+        
         
         return layoutMain
                     
