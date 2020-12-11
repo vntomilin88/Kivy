@@ -27,9 +27,8 @@ food_dict = {
              'Стандарт':(1,0,0,0)} #'Название':(калории, белки, жиры, углеводы)}
 
 food_sorter = {}
-childrenlist = []
 
-mainmenuFsize = 80
+mainmenufontsize = 80
 
 dropdown = DropDown()
            
@@ -37,7 +36,7 @@ class MainApp(App):
 
     def sorter(self):
         for key,value in food_dict.items():
-            if key[0] == self.textinput1.text.upper():
+            if key[0] == self.search_input.text.upper():
                 self.food_sorter[key]=value
             else:
                 pass
@@ -47,83 +46,127 @@ class MainApp(App):
         dropdown.clear_widgets()
         
         for key in dictionary:
-            btn = Button(text=key, font_size=mainmenuFsize, size_hint_y=None, height=120) #
+            btn = Button(text=key, font_size=mainmenufontsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)            
 
     def build(self):
             #Elements        
-        img = Image(source='Fenix.jpg')
+        logo = Image(source='Fenix.jpg')
+        #Text labels
+        self.kcal = Label(text='ккал', font_size=320, bold=True) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.protein = Label(text='белков', color=(1,1,1,1), font_size=100) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.fat = Label(text='жиров', color=(1,1,0,1), font_size=100) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.carb = Label(text='углеводов', color=(1,0,0,1), font_size=100) #, pos_hint={'center_x': .5, 'center_y': .5}
         
-        self.label = Label(text='0', font_size=320, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
+        #Added numerical labels
+        self.calories_label = Label(text='0', font_size=320, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
+        self.protein_label = Label(text='0', color=(1,1,1,1), font_size=100, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
+        self.fat_label = Label(text='0', color=(1,1,0,1), font_size=100, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
+        self.carb_label = Label(text='0', color=(1,0,0,1), font_size=100, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
         
-        self.textinput1 = TextInput(text='а', multiline=False, font_size=170, size_hint=(0.125, 0.5))
+        self.search_input = TextInput(text='а', multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
-        self.mainbutton = Button(text='Стандарт', font_size=mainmenuFsize, size_hint=(0.5, 0.5)) #
+        self.selection_button = Button(text='Стандарт', font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
         
-        dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
+        dropdown.bind(on_select=lambda instance, x: setattr(self.selection_button, 'text', x))
         
-        self.textinput = TextInput(multiline=False, font_size=170, size_hint=(0.25, 0.5)) 
+        self.portion_input = TextInput(multiline=False, font_size=170, size_hint=(0.25, 0.5)) 
         
-        btnAdd = Button(text='+', font_size=mainmenuFsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
+        add_button = Button(text='+', font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
                 
-        self.label1 = Label(text='Filler', color=(0,0,0,255), pos_hint={'center_x': .5, 'center_y': .5}) # 
-        self.label2 = Label(text='Filler', color=(0,0,0,255), pos_hint={'center_x': .5, 'center_y': .5})
+        self.spacer1 = Label(text='Filler', color=[0,0,0,0], pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
+        self.spacer2 = Label(text='Filler', color=[0,0,0,0], pos_hint={'center_x': .5, 'center_y': .5}) #, color=(0,0,0,255)
+
+
+            #Calorie Box
+        caloriebox = BoxLayout(padding=0, orientation='horizontal')
+        #Calorie Elements
+        caloriebox.add_widget(self.calories_label)
+        caloriebox.add_widget(self.kcal)
+                
+            #P/F/C Elements
+        #Pbox
+        pbox = BoxLayout(padding=0, orientation='horizontal')
+        pbox.add_widget(self.protein_label)
+        pbox.add_widget(self.protein)
         
-            #Main Layout
-        layoutMain = BoxLayout(padding=10, orientation='vertical')
+        #Fbox
+        fbox = BoxLayout(padding=0, orientation='horizontal')
+        fbox.add_widget(self.fat_label)
+        fbox.add_widget(self.fat)
         
-            #Primary Layout
-        layoutPri = BoxLayout(padding=10, orientation='horizontal')
-        layoutPri.add_widget(self.label)
-            #Auxilary Layout
-        layoutAux = BoxLayout(padding=10, orientation='horizontal')
-        layoutAux.add_widget(self.textinput1)
-        layoutAux.add_widget(self.mainbutton)
-        layoutAux.add_widget(self.textinput)
-        layoutAux.add_widget(btnAdd)
-            #Auxilary 1 Layout
-        layoutAux1 = BoxLayout(padding=10, orientation='horizontal')
-        layoutAux1.add_widget(self.label1)
-            #Auxilary 2 Layout
-        layoutAux2 = BoxLayout(padding=10, orientation='horizontal')
-        layoutAux2.add_widget(self.label2)
+        #Cbox
+        cbox = BoxLayout(padding=0, orientation='horizontal')
+        cbox.add_widget(self.carb_label)
+        cbox.add_widget(self.carb)
         
-        layoutMain.add_widget(img)
-        layoutMain.add_widget(layoutPri)
-        layoutMain.add_widget(layoutAux)
-        layoutMain.add_widget(layoutAux1)
-        layoutMain.add_widget(layoutAux2)
+         #P/F/C Box
+        pfcbox = BoxLayout(padding=0, orientation='vertical')
+        pfcbox.add_widget(pbox)
+        pfcbox.add_widget(fbox)
+        pfcbox.add_widget(cbox)
         
-        btnAdd.bind(on_press=self.on_press_add_button)
-        self.mainbutton.bind(on_release=dropdown.open)
+            #Row 2
+        row2 = BoxLayout(padding=0, orientation='horizontal')
+        #Row 2 Elements
+        row2.add_widget(caloriebox)
+        row2.add_widget(pfcbox)
+
+            #Row 3
+        row3 = BoxLayout(padding=0, orientation='horizontal')
+        #Row 3 Elements
+        row3.add_widget(self.search_input)
+        row3.add_widget(self.selection_button)
+        row3.add_widget(self.portion_input)
+        row3.add_widget(add_button)
+        
+            #Row 4 Layout
+        row4 = BoxLayout(padding=0, orientation='horizontal')
+        row4.add_widget(self.spacer1)
+        
+            #Row 5 Layout
+        row5 = BoxLayout(padding=0, orientation='horizontal')
+        row5.add_widget(self.spacer2)
+        
+           #Main Layout
+        mainlayout = BoxLayout(padding=0, orientation='vertical')
+        #Main Elements
+        mainlayout.add_widget(logo)
+        mainlayout.add_widget(row2)
+        mainlayout.add_widget(row3)
+        mainlayout.add_widget(row4)
+        mainlayout.add_widget(row5)
+        
+        add_button.bind(on_press=self.on_press_add_button)
+        self.selection_button.bind(on_release=dropdown.open)
         
         def reset(*args):
-            self.textinput1.text = ''
-            #self.dropdownmenureset()
+            self.search_input.text = ''
             self.dropdownmenu(food_dict)
         
         def menucreator(*args):
-            #dropdown.clear_widgets()
             self.food_sorter = {}
             self.sorter()
             self.dropdownmenu(self.food_sorter)
             
                    
-        dropdown.bind(on_select=lambda instance, x: setattr(self.mainbutton, 'text', x))
-        self.textinput1.bind(text=menucreator, on_text_validate=reset)
+        dropdown.bind(on_select=lambda instance, x: setattr(self.selection_button, 'text', x))
+        self.search_input.bind(text=menucreator, on_text_validate=reset)
         
-        self.textinput1.text = ''
+        self.search_input.text = ''
         self.dropdownmenu(food_dict)
         
-        
-        return layoutMain
+        return mainlayout
                     
     def on_press_add_button(self, instance):
-        if self.textinput.text.isdigit() == True:
-            self.label.text = str(round(float(self.label.text) + float(self.textinput.text)*food_dict[self.mainbutton.text][0]))
-            self.textinput.text = ''
-            self.textinput1.text = ''
+        if self.portion_input.text.isdigit() == True:
+            self.calories_label.text = str(round(float(self.calories_label.text) + float(self.portion_input.text)*food_dict[self.selection_button.text][0]))
+            self.protein_label.text = str(round(float(self.protein_label.text) + float(self.portion_input.text)*food_dict[self.selection_button.text][1]))
+            self.fat_label.text = str(round(float(self.fat_label.text) + float(self.portion_input.text)*food_dict[self.selection_button.text][2]))
+            self.carb_label.text = str(round(float(self.carb_label.text) + float(self.portion_input.text)*food_dict[self.selection_button.text][3]))
+            self.portion_input.text = ''
+            self.search_input.text = ''
             self.dropdownmenu(food_dict)
         else:
             pass
