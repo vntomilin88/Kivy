@@ -61,10 +61,10 @@ class MainApp(App):
         #Text labels
         
         #Added numerical labels
-        self.calories_label = Label(text=str(caloriecount)+' ккал', font_size=320, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
-        self.protein_label = Label(text=str(proteincount)+' белков', color=(1,1,1,1), font_size=100, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
-        self.fat_label = Label(text=str(fatcount)+' жиров', color=(1,1,0,1), font_size=100, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
-        self.carb_label = Label(text=str(carbcount)+' углеводов', color=(1,0,0,1), font_size=100, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
+        self.calories_label = Label(text=str(caloriecount)+' ккал', font_size=220, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
+        self.protein_label = Label(text=str(proteincount)+' белков', color=(1,1,1,1), font_size=80, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
+        self.fat_label = Label(text=str(fatcount)+' жиров', color=(1,1,0,1), font_size=80, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
+        self.carb_label = Label(text=str(carbcount)+' углеводов', color=(1,0,0,1), font_size=80, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
         
         self.search_input = TextInput(text='а', multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
