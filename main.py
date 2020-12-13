@@ -20,8 +20,8 @@ food_dict = {
              'Апельсин':(0.43, 0.009, 0.002, 0.081), 'Банан':(0.96, 0.015, 0.005, 0.21), 'Чернослив':(110/45, 1/45, 0, 29/45),
              'Курага':(100/40, 1/40, 0, 24/40), 'Изюм':(140/40, 1/40, 0, 33/40),
              #Молочные
-             'Пармезан':(110/28, 8/28, 8/28, 0), 'Швейцарский':(80, 6/22, 6/22, 0), 'Сырок':(140, 8, 7, 13), 'Масло':(100/14,0,11/14,0),
-             'Уй':(160,1/141,8/141,19/141),   
+             'Пармезан':(110/28, 8/28, 8/28, 0), 'Швейцарский':(80, 6, 6, 0), 'Сырок':(140, 8, 7, 13), 'Масло':(100/14,0,11/14,0),
+             'Уй':(160,1,8,19),   
              #Сладкое
              'Мёд':(60/21,0,0,17/21), 'Эклер':(43.33,0.67,2.67,6), 'Профитроль':(45,0.67,3.5,2.67),
              'Стандарт':(1,0,0,0)} #'Название':(калории, белки, жиры, углеводы)}
@@ -74,11 +74,11 @@ class MainApp(App):
         
         add_button = Button(text='+', font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
                 
-        self.calories_base_label = Label(text='0', font_size=200, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
-        self.calories_text1_label = Label(text='ккал', font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
-        self.protein_base_label = Label(text='0 белков', color=(1,1,1,1), font_size=40) #, pos_hint={'center_x': .5, 'center_y': .5}
-        self.fat_base_label = Label(text='0 жиров', color=(1,1,0,1), font_size=40) #, pos_hint={'center_x': .5, 'center_y': .5}
-        self.carb_base_label = Label(text='0 углеводов', color=(1,0,0,1), font_size=40) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.calories_base_label = Label(text='0', color=(1,1,1,0.6), font_size=200, pos_hint={'center_x': .5, 'center_y': .5})
+        self.calories_text1_label = Label(text='ккал', color=(1,1,1,0.6), font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
+        self.protein_base_label = Label(text='0 белков', color=(1,1,1,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.fat_base_label = Label(text='0 жиров', color=(1,1,0,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.carb_base_label = Label(text='0 углеводов', color=(1,0,0,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
 
         self.spacer = Label(text='Filler', color=[0,0,0,0], pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
         
