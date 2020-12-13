@@ -58,36 +58,39 @@ class MainApp(App):
     def build(self):
             #Elements        
         logo = Image(source='Fenix.jpg')
-        #Text labels
-        
+                
         #Added numerical labels
-        self.calories_label = Label(text=str(caloriecount)+' ккал', font_size=220, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
-        self.protein_label = Label(text=str(proteincount)+' белков', color=(1,1,1,1), font_size=80, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
-        self.fat_label = Label(text=str(fatcount)+' жиров', color=(1,1,0,1), font_size=80, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
-        self.carb_label = Label(text=str(carbcount)+' углеводов', color=(1,0,0,1), font_size=80, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
+        self.calories_label = Label(text=str(caloriecount), font_size=300, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
+        self.calories_text_label = Label(text='ккал', font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
+        self.protein_label = Label(text=str(proteincount)+' белков', color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.fat_label = Label(text=str(fatcount)+' жиров', color=(1,1,0,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.carb_label = Label(text=str(carbcount)+' углеводов', color=(1,0,0,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         
         self.search_input = TextInput(text='а', multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
         self.selection_button = Button(text='Стандарт', font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
         
-        dropdown.bind(on_select=lambda instance, x: setattr(self.selection_button, 'text', x))
-        
         self.portion_input = TextInput(multiline=False, font_size=170, size_hint=(0.25, 0.5)) 
         
         add_button = Button(text='+', font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
                 
-        self.spacer1 = Label(text='Filler', color=[0,0,0,0], pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
-        self.spacer2 = Label(text='Filler', color=[0,0,0,0], pos_hint={'center_x': .5, 'center_y': .5}) #, color=(0,0,0,255)
+        self.calories_base_label = Label(text='0', font_size=200, bold=True, pos_hint={'center_x': .5, 'center_y': .5})
+        self.calories_text1_label = Label(text='ккал', font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
+        self.protein_base_label = Label(text='0 белков', color=(1,1,1,1), font_size=40) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.fat_base_label = Label(text='0 жиров', color=(1,1,0,1), font_size=40) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.carb_base_label = Label(text='0 углеводов', color=(1,0,0,1), font_size=40) #, pos_hint={'center_x': .5, 'center_y': .5}
 
-
+        self.spacer = Label(text='Filler', color=[0,0,0,0], pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
+        
             #Calorie Box
-        caloriebox = BoxLayout(padding=0, orientation='horizontal')
+        caloriebox = BoxLayout(padding=20, orientation='vertical')
         #Calorie Elements
         caloriebox.add_widget(self.calories_label)
+        caloriebox.add_widget(self.calories_text_label)
                 
             #P/F/C Elements
        
-         #P/F/C Box
+        #P/F/C Box
         pfcbox = BoxLayout(padding=0, orientation='vertical')
         pfcbox.add_widget(self.protein_label)
         pfcbox.add_widget(self.fat_label)
@@ -107,13 +110,27 @@ class MainApp(App):
         row3.add_widget(self.portion_input)
         row3.add_widget(add_button)
         
-            #Row 4 Layout
-        row4 = BoxLayout(padding=0, orientation='horizontal')
-        row4.add_widget(self.spacer1)
+        #Calorie_base Box
+        caloriebasebox = BoxLayout(padding=20, orientation='vertical')
+        #Calorie Elements
+        caloriebasebox.add_widget(self.calories_base_label)
+        caloriebasebox.add_widget(self.calories_text1_label)
         
-            #Row 5 Layout
+        #P/F/C_base Box
+        pfcbasebox = BoxLayout(padding=0, orientation='vertical')
+        #P/F/C_base Elements
+        pfcbasebox.add_widget(self.protein_base_label)
+        pfcbasebox.add_widget(self.fat_base_label)
+        pfcbasebox.add_widget(self.carb_base_label)
+        
+            #Row 4
+        row4 = BoxLayout(padding=0, orientation='horizontal')
+        row4.add_widget(caloriebasebox)
+        row4.add_widget(pfcbasebox)
+        
+            #Row 5
         row5 = BoxLayout(padding=0, orientation='horizontal')
-        row5.add_widget(self.spacer2)
+        row5.add_widget(self.spacer)
         
            #Main Layout
         mainlayout = BoxLayout(padding=0, orientation='vertical')
@@ -135,11 +152,28 @@ class MainApp(App):
             self.food_sorter = {}
             self.sorter()
             self.dropdownmenu(self.food_sorter)
-            
-                   
-        dropdown.bind(on_select=lambda instance, x: setattr(self.selection_button, 'text', x))
-        self.search_input.bind(text=menucreator, on_text_validate=reset)
         
+        #dropdown.bind(on_select=lambda instance, x: setattr(self.selection_button, 'text', x))
+        def dropdownbind(instance, x):
+            setattr(self.selection_button, 'text', x) #setattr(object, name, value) - sets value of an attribute of an object
+            
+        def base(instance, x):
+            if x == '':
+                self.calories_base_label.text = ''
+                self.calories_text1_label.text = ''
+                self.protein_base_label.text = ''
+                self.fat_base_label.text = ''
+                self.carb_base_label.text = ''
+            else:    
+                self.calories_base_label.text = str(round((float(x)*food_dict[self.selection_button.text][0])))
+                self.calories_text1_label.text = 'ккал'
+                self.protein_base_label.text = str(round((float(x)*food_dict[self.selection_button.text][1])))+' белков'
+                self.fat_base_label.text = str(round((float(x)*food_dict[self.selection_button.text][2]))) +' жиров'
+                self.carb_base_label.text = str(round((float(x)*food_dict[self.selection_button.text][3]))) +' углеводов'
+    
+        dropdown.bind(on_select=dropdownbind)
+        self.search_input.bind(text=menucreator, on_text_validate=reset)
+        self.portion_input.bind(text=base)
         self.search_input.text = ''
         self.dropdownmenu(food_dict)
         
@@ -147,7 +181,7 @@ class MainApp(App):
                     
     def on_press_add_button(self, instance):
         if self.portion_input.text.isdigit() == True:
-            self.calories_label.text = str(round(float(caloriecount) + float(self.portion_input.text)*food_dict[self.selection_button.text][0]))+' ккал'
+            self.calories_label.text = str(round(float(caloriecount) + float(self.portion_input.text)*food_dict[self.selection_button.text][0]))
             self.protein_label.text = str(round(float(proteincount) + float(self.portion_input.text)*food_dict[self.selection_button.text][1]))+' белков'
             self.fat_label.text = str(round(float(fatcount) + float(self.portion_input.text)*food_dict[self.selection_button.text][2]))+' жиров'
             self.carb_label.text = str(round(float(carbcount) + float(self.portion_input.text)*food_dict[self.selection_button.text][3]))+' углеводов'
