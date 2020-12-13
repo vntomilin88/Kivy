@@ -28,11 +28,6 @@ food_dict = {
 
 food_sorter = {}
 
-caloriecount = 0
-proteincount = 0
-fatcount = 0
-carbcount = 0 
-
 mainmenufontsize = 80
 
 dropdown = DropDown()
@@ -60,11 +55,11 @@ class MainApp(App):
         logo = Image(source='Fenix.jpg')
                 
         #Added numerical labels
-        self.calories_label = Label(text=str(caloriecount), font_size=300, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
+        self.calories_label = Label(text='0', font_size=300, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
         self.calories_text_label = Label(text='ккал', font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
-        self.protein_label = Label(text=str(proteincount)+' белков', color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-        self.fat_label = Label(text=str(fatcount)+' жиров', color=(1,1,0,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-        self.carb_label = Label(text=str(carbcount)+' углеводов', color=(1,0,0,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.protein_label = Label(text='0 белков', color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.fat_label = Label(text='0 жиров', color=(1,1,0,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.carb_label = Label(text='0 углеводов', color=(1,0,0,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         
         self.search_input = TextInput(text='а', multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
@@ -180,11 +175,12 @@ class MainApp(App):
         return mainlayout
                     
     def on_press_add_button(self, instance):
+        
         if self.portion_input.text.isdigit() == True:
-            self.calories_label.text = str(round(float(caloriecount) + float(self.portion_input.text)*food_dict[self.selection_button.text][0]))
-            self.protein_label.text = str(round(float(proteincount) + float(self.portion_input.text)*food_dict[self.selection_button.text][1]))+' белков'
-            self.fat_label.text = str(round(float(fatcount) + float(self.portion_input.text)*food_dict[self.selection_button.text][2]))+' жиров'
-            self.carb_label.text = str(round(float(carbcount) + float(self.portion_input.text)*food_dict[self.selection_button.text][3]))+' углеводов'
+            self.calories_label.text = str(round(float(self.calories_label.text.split()[0]) + float(self.portion_input.text)*food_dict[self.selection_button.text][0]))
+            self.protein_label.text = str(round(float(self.protein_label.text.split()[0]) + float(self.portion_input.text)*food_dict[self.selection_button.text][1]))+' белков'
+            self.fat_label.text = str(round(float(self.fat_label.text.split()[0]) + float(self.portion_input.text)*food_dict[self.selection_button.text][2]))+' жиров'
+            self.carb_label.text = str(round(float(self.carb_label.text.split()[0]) + float(self.portion_input.text)*food_dict[self.selection_button.text][3]))+' углеводов'
             self.portion_input.text = ''
             self.search_input.text = ''
             self.dropdownmenu(food_dict)
