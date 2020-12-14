@@ -49,7 +49,7 @@ class MainApp(App):
 
     def build(self):
             #Elements        
-        reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.2,1), pos_hint={'center_x': .5, 'center_y': .5})
+        reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.5,1), pos_hint={'center_x': .5, 'center_y': .5})
                 
         #Added numerical labels
         self.calories_label = Label(text='0', font_size=300, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
