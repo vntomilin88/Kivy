@@ -5,11 +5,8 @@ Created on Fri Nov 13 00:48:54 2020
 @author: vntom
 """
 
-import kivy
-
 from kivy.app import App
 from kivy.uix.label import Label
-from kivy.uix.image import Image
 from kivy.uix.button import Button
 from kivy.uix.dropdown import DropDown
 from kivy.uix.boxlayout import BoxLayout
@@ -52,7 +49,7 @@ class MainApp(App):
 
     def build(self):
             #Elements        
-        logo = Image(source='Fenix.jpg')
+        reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.2,1), pos_hint={'center_x': .5, 'center_y': .5})
                 
         #Added numerical labels
         self.calories_label = Label(text='0', font_size=300, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
@@ -69,11 +66,11 @@ class MainApp(App):
         
         add_button = Button(text='+', font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
                 
-        self.calories_base_label = Label(text='0', color=(1,1,1,0.6), font_size=200, pos_hint={'center_x': .5, 'center_y': .5})
-        self.calories_text1_label = Label(text='ккал', color=(1,1,1,0.6), font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
-        self.protein_base_label = Label(text='0 белков', color=(1,1,1,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
-        self.fat_base_label = Label(text='0 жиров', color=(1,1,0,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
-        self.carb_base_label = Label(text='0 углеводов', color=(1,0,0,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.calories_base_label = Label(text='', color=(1,1,1,0.6), font_size=200, pos_hint={'center_x': .5, 'center_y': .5})
+        self.calories_text1_label = Label(text='', color=(1,1,1,0.6), font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
+        self.protein_base_label = Label(text='', color=(1,1,1,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.fat_base_label = Label(text='', color=(1,1,0,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.carb_base_label = Label(text='', color=(1,0,0,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
 
         self.spacer = Label(text='Filler', color=[0,0,0,0], pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
         
@@ -127,18 +124,27 @@ class MainApp(App):
         row5 = BoxLayout(padding=0, orientation='horizontal')
         row5.add_widget(self.spacer)
         
-           #Main Layout
+            #Main Layout
         mainlayout = BoxLayout(padding=0, orientation='vertical')
         #Main Elements
-        mainlayout.add_widget(logo)
+        mainlayout.add_widget(reset_button)
         mainlayout.add_widget(row2)
         mainlayout.add_widget(row3)
         mainlayout.add_widget(row4)
         mainlayout.add_widget(row5)
-        
+
+        def total_reset(*args):
+            self.calories_label.text = '0'
+            self.protein_label.text = '0 белков'
+            self.fat_label.text = '0 жиров'
+            self.carb_label.text = '0 углеводов'
+            self.search_input.text = ''
+            self.dropdownmenu(food_dict)
+            
+        reset_button.bind(on_press=total_reset)
         add_button.bind(on_press=self.on_press_add_button)
         self.selection_button.bind(on_release=dropdown.open)
-        
+
         def reset(*args):
             self.search_input.text = ''
             self.dropdownmenu(food_dict)
