@@ -12,6 +12,10 @@ from kivy.uix.dropdown import DropDown
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 
+from kivy.core.text import LabelBase
+
+LabelBase.register(name='Cyrillic 2', fn_regular='Cyrillic 2.ttf')
+
 food_dict = {
              #Фруктовые
              'Апельсин':(0.43, 0.009, 0.002, 0.081), 'Банан':(0.96, 0.015, 0.005, 0.21), 'Чернослив':(110/45, 1/45, 0, 29/45),
@@ -20,7 +24,7 @@ food_dict = {
              'Пармезан':(110/28, 8/28, 8/28, 0), 'Швейцарский':(80, 6, 6, 0), 'Сырок':(140, 8, 7, 13), 'Масло':(100/14,0,11/14,0),
              'Уй':(160,1,8,19),   
              #Сладкое
-             'Мёд':(60/21,0,0,17/21), 'Эклер':(43.33,0.67,2.67,6), 'Профитроль':(45,0.67,3.5,2.67),
+             'Мед':(60/21,0,0,17/21), 'Эклер':(43.33,0.67,2.67,6), 'Профитроль':(45,0.67,3.5,2.67),
              'Стандарт':(1,0,0,0)} #'Название':(калории, белки, жиры, углеводы)}
 
 food_sorter = {}
@@ -43,34 +47,34 @@ class MainApp(App):
         dropdown.clear_widgets()
         
         for key in dictionary:
-            btn = Button(text=key, font_size=mainmenufontsize, size_hint_y=None, height=120) #
+            btn = Button(text=key, font_name='Cyrillic 2', font_size=mainmenufontsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)            
 
     def build(self):
             #Elements        
-        reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.5,1), pos_hint={'center_x': .5, 'center_y': .5})
+        reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
                 
         #Added numerical labels
-        self.calories_label = Label(text='0', font_size=300, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
-        self.calories_text_label = Label(text='ккал', font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
-        self.protein_label = Label(text='0 белков', color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-        self.fat_label = Label(text='0 жиров', color=(1,1,0,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-        self.carb_label = Label(text='0 углеводов', color=(1,0,0,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.calories_label = Label(text='0', font_name='Cyrillic 2', font_size=300, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
+        self.calories_text_label = Label(text='ккал', font_name='Cyrillic 2', font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
+        self.protein_label = Label(text='0 белков', color=(1,1,1,1), font_name='Cyrillic 2', font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.fat_label = Label(text='0 жиров', color=(1,1,0,1), font_name='Cyrillic 2', font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.carb_label = Label(text='0 углеводов', color=(1,0,0,1), font_name='Cyrillic 2', font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         
         self.search_input = TextInput(text='а', multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
-        self.selection_button = Button(text='Стандарт', font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
+        self.selection_button = Button(text='Стандарт', font_name='Cyrillic 2', font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
         
-        self.portion_input = TextInput(multiline=False, font_size=170, size_hint=(0.25, 0.5)) 
+        self.portion_input = TextInput(multiline=False, font_name='Cyrillic 2', font_size=170, size_hint=(0.25, 0.5)) 
         
-        add_button = Button(text='+', font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
+        add_button = Button(text='+', font_name='Cyrillic 2', font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
                 
-        self.calories_base_label = Label(text='', color=(1,1,1,0.6), font_size=200, pos_hint={'center_x': .5, 'center_y': .5})
-        self.calories_text1_label = Label(text='', color=(1,1,1,0.6), font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
-        self.protein_base_label = Label(text='', color=(1,1,1,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
-        self.fat_base_label = Label(text='', color=(1,1,0,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
-        self.carb_base_label = Label(text='', color=(1,0,0,0.6), font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.calories_base_label = Label(text='', color=(1,1,1,0.6), font_name='Cyrillic 2', font_size=200, pos_hint={'center_x': .5, 'center_y': .5})
+        self.calories_text1_label = Label(text='', color=(1,1,1,0.6), font_name='Cyrillic 2', font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
+        self.protein_base_label = Label(text='', color=(1,1,1,0.6), font_name='Cyrillic 2', font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.fat_base_label = Label(text='', color=(1,1,0,0.6), font_name='Cyrillic 2', font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.carb_base_label = Label(text='', color=(1,0,0,0.6), font_name='Cyrillic 2', font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
 
         self.spacer = Label(text='Filler', color=[0,0,0,0], pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
         
