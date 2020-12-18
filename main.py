@@ -14,7 +14,7 @@ from kivy.uix.textinput import TextInput
 
 from kivy.core.text import LabelBase
 
-LabelBase.register(name='Cyrillic_2', fn_regular='Cyrillic_2.ttf')
+LabelBase.register(name='Cyrillic_2', fn_regular='Cyrillic_2.ttf', fn_bold='Cyrillic_2.ttf')
 
 food_dict = {
              #Фруктовые
@@ -62,7 +62,7 @@ class MainApp(App):
         self.fat_label = Label(text='0 жиров', color=(1,1,0,1), font_name='Cyrillic_2', font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         self.carb_label = Label(text='0 углеводов', color=(1,0,0,1), font_name='Cyrillic_2', font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         
-        self.search_input = TextInput(text='а', multiline=False, font_size=170, size_hint=(0.125, 0.5))
+        self.search_input = TextInput(text='а', background_color=(0,0,0,0), multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
         self.selection_button = Button(text='Стандарт', font_name='Cyrillic_2', font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
         
@@ -76,7 +76,7 @@ class MainApp(App):
         self.fat_base_label = Label(text='', color=(1,1,0,0.6), font_name='Cyrillic_2', font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
         self.carb_base_label = Label(text='', color=(1,0,0,0.6), font_name='Cyrillic_2', font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
 
-        self.spacer = Label(text='Filler', color=[0,0,0,0], pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
+        self.spacer = Label(text='Filler', color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
         
             #Calorie Box
         caloriebox = BoxLayout(padding=20, orientation='vertical')
