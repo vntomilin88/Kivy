@@ -14,7 +14,7 @@ from kivy.uix.textinput import TextInput
 
 from kivy.core.text import LabelBase
 
-LabelBase.register(name='Cyrillic_2', fn_regular='Cyrillic_2.ttf', fn_bold='Cyrillic_2.ttf')
+#LabelBase.register(name='Cyrillic_2', fn_regular='Cyrillic_2.ttf') #, fn_bold='Cyrillic_2.ttf'
 
 food_dict = {
              #Фруктовые
@@ -56,7 +56,7 @@ class MainApp(App):
         reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
                 
         #Added numerical labels
-        self.calories_label = Label(text='0', font_name='Cyrillic_2', font_size=300, bold=True, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), 
+        self.calories_label = Label(text='0', font_name='Cyrillic_2', font_size=300, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
         self.calories_text_label = Label(text='ккал', font_name='Cyrillic_2', font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
         self.protein_label = Label(text='0 белков', color=(1,1,1,1), font_name='Cyrillic_2', font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         self.fat_label = Label(text='0 жиров', color=(1,1,0,1), font_name='Cyrillic_2', font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
