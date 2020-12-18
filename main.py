@@ -14,7 +14,7 @@ from kivy.uix.textinput import TextInput
 
 from kivy.core.text import LabelBase
 
-#LabelBase.register(name='Arial', fn_regular='Arial') #, fn_bold='Arial'
+#LabelBase.register(name='', fn_regular='') #, fn_bold=''
 
 food_dict = {
              #Фруктовые
@@ -47,7 +47,7 @@ class MainApp(App):
         dropdown.clear_widgets()
         
         for key in dictionary:
-            btn = Button(text=key, font_name='Arial', font_size=mainmenufontsize, size_hint_y=None, height=120) #
+            btn = Button(text=key,  font_size=mainmenufontsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)            
 
@@ -56,25 +56,25 @@ class MainApp(App):
         reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
                 
         #Added numerical labels
-        self.calories_label = Label(text='0', font_name='Arial', font_size=300, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
-        self.calories_text_label = Label(text='ккал', font_name='Arial', font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
-        self.protein_label = Label(text='0 белков', color=(1,1,1,1), font_name='Arial', font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-        self.fat_label = Label(text='0 жиров', color=(1,1,0,1), font_name='Arial', font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-        self.carb_label = Label(text='0 углеводов', color=(1,0,0,1), font_name='Arial', font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.calories_label = Label(text='0', font_name='Cyrillic_2', font_size=300, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
+        self.calories_text_label = Label(text='ккал',  font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
+        self.protein_label = Label(text='0 белков', color=(1,1,1,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.fat_label = Label(text='0 жиров', color=(1,1,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.carb_label = Label(text='0 углеводов', color=(1,0,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         
         self.search_input = TextInput(text='а', background_color=(0,0,0,0), multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
-        self.selection_button = Button(text='Стандарт', font_name='Arial', font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
+        self.selection_button = Button(text='Стандарт',  font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
         
-        self.portion_input = TextInput(multiline=False, font_name='Arial', font_size=170, size_hint=(0.25, 0.5)) 
+        self.portion_input = TextInput(multiline=False,  font_size=170, size_hint=(0.25, 0.5)) 
         
-        add_button = Button(text='+', font_name='Arial', font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
+        add_button = Button(text='+',  font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
                 
-        self.calories_base_label = Label(text='', color=(1,1,1,0.6), font_name='Arial', font_size=200, pos_hint={'center_x': .5, 'center_y': .5})
-        self.calories_text1_label = Label(text='', color=(1,1,1,0.6), font_name='Arial', font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
-        self.protein_base_label = Label(text='', color=(1,1,1,0.6), font_name='Arial', font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
-        self.fat_base_label = Label(text='', color=(1,1,0,0.6), font_name='Arial', font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
-        self.carb_base_label = Label(text='', color=(1,0,0,0.6), font_name='Arial', font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.calories_base_label = Label(text='', color=(1,1,1,0.6),  font_size=200, pos_hint={'center_x': .5, 'center_y': .5})
+        self.calories_text1_label = Label(text='', color=(1,1,1,0.6),  font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
+        self.protein_base_label = Label(text='', color=(1,1,1,0.6),  font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.fat_base_label = Label(text='', color=(1,1,0,0.6),  font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.carb_base_label = Label(text='', color=(1,0,0,0.6),  font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
 
         self.spacer = Label(text='Filler', color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
         
