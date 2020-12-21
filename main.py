@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 """
 Created on Fri Nov 13 00:48:54 2020
 
@@ -56,8 +56,8 @@ class MainApp(App):
         reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
                 
         #Added numerical labels
-        self.calories_label = Label(text='0', font_name='Cyrillic_2', font_size=300, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
-        self.calories_text_label = Label(text='ккал',  font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
+        self.calories_label = Label(text='0', font_name='CyrillicOld', font_size=300, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
+        self.calories_text_label = Label(text='ккал', font_name='CyrillicOld', font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
         self.protein_label = Label(text='0 белков', color=(1,1,1,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         self.fat_label = Label(text='0 жиров', color=(1,1,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         self.carb_label = Label(text='0 углеводов', color=(1,0,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
