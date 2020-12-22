@@ -5,6 +5,12 @@ Created on Fri Nov 13 00:48:54 2020
 @author: vntom
 """
 
+from kivy.config import Config
+
+# Config.set('kivy', 'default_font', ["Arial", "C:/Windows/Fonts/arial.ttf", "C:/Windows/Fonts/ariali.ttf", "C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/arialbi.ttf"])
+Config.set('kivy', 'default_font', ['Izhitsa', 'Izhitsa.ttf'])
+Config.write() 
+
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.button import Button
@@ -13,8 +19,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 
 from kivy.core.text import LabelBase
-
-LabelBase.register(name='Teremok', fn_regular='CyrillicOld.ttf') #, fn_bold=''
+ 
+LabelBase.register(name='Teremok', fn_regular='Izhitsa.ttf') #, fn_bold=''
 
 food_dict = {
              #Фруктовые
@@ -47,7 +53,7 @@ class MainApp(App):
         dropdown.clear_widgets()
         
         for key in dictionary:
-            btn = Button(text=key,  font_size=mainmenufontsize, size_hint_y=None, height=120) #
+            btn = Button(text=key, font_size=mainmenufontsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)            
 
@@ -56,8 +62,8 @@ class MainApp(App):
         reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
                 
         #Added numerical labels
-        self.calories_label = Label(text='0', font_name='Teremok', font_size=300, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
-        self.calories_text_label = Label(text='ккал', font_name='Teremok', font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
+        self.calories_label = Label(text='0', font_size=300, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
+        self.calories_text_label = Label(text='ккал', font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
         self.protein_label = Label(text='0 белков', color=(1,1,1,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         self.fat_label = Label(text='0 жиров', color=(1,1,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         self.carb_label = Label(text='0 углеводов', color=(1,0,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
