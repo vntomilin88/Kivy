@@ -34,7 +34,7 @@ food_dict = {
 
 food_sorter = {}
 
-mainmenufontsize = 80
+mainmenufontsize = 120
 teremokfont = 'Teremok'
 
 dropdown = DropDown()
@@ -53,7 +53,7 @@ class MainApp(App):
         dropdown.clear_widgets()
         
         for key in dictionary:
-            btn = Button(text=key, background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint_y=None, height=120) #
+            btn = Button(text=key, background_color=(0,0,0,1), font_name=teremokfont, font_size=mainmenufontsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)            
 
@@ -65,22 +65,22 @@ class MainApp(App):
         self.calories_label = Label(text='0', font_name=teremokfont, font_size=300, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
         self.calories_text_label = Label(text='ккал', font_name=teremokfont, font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
         self.protein_label = Label(text='0 белков', font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-        self.fat_label = Label(text='0 жиров', font_name=teremokfont, color=(1,1,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-        self.carb_label = Label(text='0 углеводов', font_name=teremokfont, color=(1,0,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.fat_label = Label(text='0 жиров', font_name=teremokfont, color=(1,0.874,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.carb_label = Label(text='0 углеводов', font_name=teremokfont, color=(0.65,0,0.12,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         
-        self.search_input = TextInput(text='а', font_name=teremokfont, foreground_color=(1,1,1,1), background_color=(0,0,0,0), multiline=False, font_size=170, size_hint=(0.125, 0.5))
+        self.search_input = TextInput(text='а', font_name=teremokfont, foreground_color=(1,1,1,1), background_color=(0,0,0,0), multiline=False, font_size=120, size_hint=(0.125, 0.5))
         
         self.selection_button = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
         
-        self.portion_input = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=170, size_hint=(0.25, 0.5)) 
+        self.portion_input = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=120, size_hint=(0.25, 0.5)) 
         
         add_button = Button(text='+', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
                 
         self.calories_base_label = Label(text='',font_name=teremokfont, color=(1,1,1,0.6),  font_size=200, pos_hint={'center_x': .5, 'center_y': .5})
         self.calories_text1_label = Label(text='', font_name=teremokfont, color=(1,1,1,0.6),  font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
         self.protein_base_label = Label(text='', font_name=teremokfont, color=(1,1,1,0.6),  font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
-        self.fat_base_label = Label(text='', font_name=teremokfont, color=(1,1,0,0.6),  font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
-        self.carb_base_label = Label(text='', font_name=teremokfont, color=(1,0,0,0.6),  font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.fat_base_label = Label(text='', font_name=teremokfont, color=(1,0.874,0,0.6),  font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
+        self.carb_base_label = Label(text='', font_name=teremokfont, color=(0.65,0,0.12,0.6),  font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
 
         self.spacer = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
         
