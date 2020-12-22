@@ -19,7 +19,7 @@ from kivy.uix.textinput import TextInput
 
 from kivy.core.text import LabelBase
  
-LabelBase.register(name='Teremok', fn_regular='Izhitsa.ttf') #, fn_bold=''
+LabelBase.register(name='Teremok', fn_regular='Teremok.ttf') #, fn_bold=''
 
 food_dict = {
              #Фруктовые
@@ -29,13 +29,13 @@ food_dict = {
              'Пармезан':(110/28, 8/28, 8/28, 0), 'Швейцарский':(80, 6, 6, 0), 'Сырок':(140, 8, 7, 13), 'Масло':(100/14,0,11/14,0),
              'Уй':(160,1,8,19),   
              #Сладкое
-             'Мед':(60/21,0,0,17/21), 'Эклер':(43.33,0.67,2.67,6), 'Профитроль':(45,0.67,3.5,2.67),
+             'Мёд':(60/21,0,0,17/21), 'Эклер':(43.33,0.67,2.67,6), 'Профитроль':(45,0.67,3.5,2.67),
              'Стандарт':(1,0,0,0)} #'Название':(калории, белки, жиры, углеводы)}
 
 food_sorter = {}
 
 mainmenufontsize = 80
-teremokfont = 'Izhitsa.ttf'
+teremokfont = 'Teremok'
 
 dropdown = DropDown()
            
@@ -53,7 +53,7 @@ class MainApp(App):
         dropdown.clear_widgets()
         
         for key in dictionary:
-            btn = Button(text=key, font_name=teremokfont, font_size=mainmenufontsize, size_hint_y=None, height=120) #
+            btn = Button(text=key, background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint_y=None, height=120) #
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)            
 
@@ -64,17 +64,17 @@ class MainApp(App):
         #Added numerical labels
         self.calories_label = Label(text='0', font_name=teremokfont, font_size=300, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
         self.calories_text_label = Label(text='ккал', font_name=teremokfont, font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
-        self.protein_label = Label(text='0 белков', font_name=teremokfont, color=(1,1,1,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+        self.protein_label = Label(text='0 белков', font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         self.fat_label = Label(text='0 жиров', font_name=teremokfont, color=(1,1,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         self.carb_label = Label(text='0 углеводов', font_name=teremokfont, color=(1,0,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
         
-        self.search_input = TextInput(text='а', font_name=teremokfont, background_color=(0,0,0,0), multiline=False, font_size=170, size_hint=(0.125, 0.5))
+        self.search_input = TextInput(text='а', font_name=teremokfont, foreground_color=(1,1,1,1), background_color=(0,0,0,0), multiline=False, font_size=170, size_hint=(0.125, 0.5))
         
-        self.selection_button = Button(text='Стандарт', font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
+        self.selection_button = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
         
-        self.portion_input = TextInput(multiline=False, font_name=teremokfont,  font_size=170, size_hint=(0.25, 0.5)) 
+        self.portion_input = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=170, size_hint=(0.25, 0.5)) 
         
-        add_button = Button(text='+', font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
+        add_button = Button(text='+', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
                 
         self.calories_base_label = Label(text='',font_name=teremokfont, color=(1,1,1,0.6),  font_size=200, pos_hint={'center_x': .5, 'center_y': .5})
         self.calories_text1_label = Label(text='', font_name=teremokfont, color=(1,1,1,0.6),  font_size=100, pos_hint={'center_x': .5, 'center_y': .5})
