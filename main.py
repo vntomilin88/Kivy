@@ -53,7 +53,7 @@ class MainApp(App):
         dropdown.clear_widgets()
         
         for key in dictionary:
-            btn = Button(text=key, background_color=(0,0,0,1), font_name=teremokfont, font_size=mainmenufontsize, size_hint_y=None, height=120) #
+            btn = Button(text=key, background_color=(0,0,0,1), font_name=teremokfont, font_size=mainmenufontsize, size_hint_y=None) #, height=120
             btn.bind(on_release=lambda btn: dropdown.select(btn.text))
             dropdown.add_widget(btn)            
 
