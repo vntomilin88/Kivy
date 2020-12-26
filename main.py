@@ -224,7 +224,7 @@ foodcounterscreenlayout.add_widget(s2_selection_button)
                
 def s2_dropdownmenu(dictionary, *args):
      
-     dropdown.clear_widgets()
+     s2_dropdown.clear_widgets()
      
      for key in dictionary:
          btn = Button(text=key, background_color=(0,0,0,1), font_name=teremokfont, font_size=mainmenufontsize, size_hint_y=None) #, height=120
@@ -234,16 +234,16 @@ def s2_dropdownmenu(dictionary, *args):
 s2_dropdownmenu(food_dict)
 
 def on_key_a(keyboard, keycode, text, modifiers):
-    for key,value in food_dict.items():
-        if key[0] == keycode[1]:
-            food_sorter[key]=value
-        else:
-            pass
+    # for key,value in food_dict.items():
+    #     if keycode[1] == key[0]:
+    #         food_sorter[key]=value
+    #     else:
+    #         pass
     
-    s2_dropdownmenu(food_sorter)
+    # s2_dropdownmenu(food_sorter)
     
-    # if keycode[2] == 'x':
-    #     keyboard.release()
+    if keycode[1] == 'а':
+        keyboard.release()
     
 def dropsearch(instance):
     s2_dropdown.open(s2_selection_button)
