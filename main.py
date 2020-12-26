@@ -229,8 +229,10 @@ for key in food_dict:
 def dropsearch(instance):
     s2_dropdown.open(s2_selection_button)
     Window.request_keyboard(None, s2_selection_button, input_type='text')
+    Window.on_keyboard('a', scancode=None, codepoint=None, modifier=None)
 
 s2_selection_button.bind(on_release=dropsearch)
+s2_dropdown.bind(on_select=lambda instance, x: setattr(s2_selection_button, 'text', x))
 
 FoodCounterScreen.add_widget(foodcounterscreenlayout)
 
