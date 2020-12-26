@@ -225,11 +225,16 @@ for key in food_dict:
     btn = Button(text=key, background_color=(0,0,0,1), font_name=teremokfont, font_size=mainmenufontsize, size_hint_y=None) #, height=120
     btn.bind(on_release=lambda btn: s2_dropdown.select(btn.text))
     s2_dropdown.add_widget(btn)
+
+def on_key_a(keyboard, keycode, text, modifiers):
+    if keycode[1] == 'a':
+        keyboard.release()
     
 def dropsearch(instance):
     s2_dropdown.open(s2_selection_button)
     Window.request_keyboard(None, s2_selection_button, input_type='text')
-    Window.on_keyboard('a', scancode=None, codepoint=None, modifier=None)
+    #Window.on_keyboard('a', scancode=None, codepoint=None, modifier=None)
+    Window.request_keyboard(None, s2_selection_button, input_type='text').bind(on_key_down=on_key_a)
 
 s2_selection_button.bind(on_release=dropsearch)
 s2_dropdown.bind(on_select=lambda instance, x: setattr(s2_selection_button, 'text', x))
