@@ -26,7 +26,7 @@ from kivy.uix.screenmanager import Screen
 
  
 LabelBase.register(name='Teremok', fn_regular='Teremok.ttf') #, fn_bold=''
-#VKeyboard.layout = 'numeric.json'
+VKeyboard.layout = 'numeric.json'
 
 food_dict = {
              #Фруктовые
@@ -286,11 +286,9 @@ def on_key_a(keyboard, keycode, text, modifiers):
     
 def dropsearch(instance):
     s2_dropdown.open(s2_selection_button)
-    MyKeyboardListener()
-    #FoodCounterScreen.add_widget(foodcounterscreenlayout2)
-    # vkeyboard = Window.request_keyboard(None, s2_selection_button).widget
+    FoodCounterScreen.add_widget(VKeyboard())
+    #return Window.request_keyboard(None, s2_selection_button).widget
     # vkeyboard.layout = 'numeric.json'
-    
     
     #Window.request_keyboard(None, s2_selection_button, input_type='text').bind(on_key_down=on_key_a)
 
