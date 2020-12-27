@@ -11,8 +11,10 @@ Created on Fri Nov 13 00:48:54 2020
 #Config.write() 
 
 from kivy.app import App
+
 from kivy.uix.label import Label
 from kivy.uix.button import Button
+from kivy.uix.widget import Widget
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.carousel import Carousel
@@ -21,7 +23,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.vkeyboard import VKeyboard
 from kivy.uix.screenmanager import Screen
-from kivy.uix.floatlayout import FloatLayout
+
  
 LabelBase.register(name='Teremok', fn_regular='Teremok.ttf') #, fn_bold=''
 #VKeyboard.layout = 'numeric.json'
@@ -224,9 +226,6 @@ foodcounterscreenlayout.add_widget(s2_reset_button)
 foodcounterscreenlayout.add_widget(s2_calories_label)
 foodcounterscreenlayout.add_widget(s2_selection_button)
 
-foodcounterscreenlayout2 = FloatLayout()
-foodcounterscreenlayout2.add_widget(VKeyboard())
-
                
 def s2_dropdownmenu(dictionary, *args):
      
@@ -238,6 +237,37 @@ def s2_dropdownmenu(dictionary, *args):
         s2_dropdown.add_widget(btn)            
 
 s2_dropdownmenu(food_dict)
+
+class MyKeyboardListener(Widget):
+
+    def __init__(self, **kwargs):
+        super(MyKeyboardListener, self).__init__(**kwargs)
+        self._keyboard = Window.request_keyboard(
+            self._keyboard_closed, self, 'text')
+        if self._keyboard.widget:
+            vkeyboard = self._keyboard.widget
+            vkeyboard.layout = 'numeric.json'
+            #pass
+        self._keyboard.bind(on_key_down=self._on_keyboard_down)
+
+    def _keyboard_closed(self):
+        print('My keyboard have been closed!')
+        self._keyboard.unbind(on_key_down=self._on_keyboard_down)
+        self._keyboard = None
+
+    def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
+        print('The key', keycode, 'have been pressed')
+        print(' - text is %r' % text)
+        print(' - modifiers are %r' % modifiers)
+
+        # Keycode is composed of an integer + a string
+        # If we hit escape, release the keyboard
+        if keycode[1] == 'escape':
+            keyboard.release()
+
+        # Return True to accept the key. Otherwise, it will be used by
+        # the system.
+        return True
 
 def on_key_a(keyboard, keycode, text, modifiers):
     # for key,value in food_dict.items():
@@ -256,9 +286,10 @@ def on_key_a(keyboard, keycode, text, modifiers):
     
 def dropsearch(instance):
     s2_dropdown.open(s2_selection_button)
+    MyKeyboardListener()
     #FoodCounterScreen.add_widget(foodcounterscreenlayout2)
-    vkeyboard = Window.request_keyboard(None, s2_selection_button).widget
-    vkeyboard.layout = 'numeric.json'
+    # vkeyboard = Window.request_keyboard(None, s2_selection_button).widget
+    # vkeyboard.layout = 'numeric.json'
     
     
     #Window.request_keyboard(None, s2_selection_button, input_type='text').bind(on_key_down=on_key_a)
