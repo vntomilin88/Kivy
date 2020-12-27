@@ -241,14 +241,18 @@ def on_key_a(keyboard, keycode, text, modifiers):
     #         pass
     
     # s2_dropdownmenu(food_sorter)
+    print(keycode[1])
+    print(keyboard)
     
-    if keycode[1] == 'а':
-        s2_calories_label.text = str(keycode[1])
+    if keycode[1] == 'x':
+        s2_calories_label.text = keycode[1]
         keyboard.release()
     
 def dropsearch(instance):
     s2_dropdown.open(s2_selection_button)
-    Window.request_keyboard(None, s2_selection_button, input_type='text').bind(on_key_down=on_key_a)
+    Window.request_keyboard(None, s2_selection_button).widget.layout = 'numeric.json'
+    
+    #Window.request_keyboard(None, s2_selection_button, input_type='text').bind(on_key_down=on_key_a)
 
 s2_selection_button.bind(on_release=dropsearch)
 s2_dropdown.bind(on_select=lambda instance, x: setattr(s2_selection_button, 'text', x))
