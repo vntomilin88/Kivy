@@ -5,10 +5,10 @@ Created on Fri Nov 13 00:48:54 2020
 @author: vntom
 """
 
-# from kivy.config import Config
+#from kivy.config import Config
 # Config.set('kivy', 'default_font', ["Arial", "C:/Windows/Fonts/arial.ttf", "C:/Windows/Fonts/ariali.ttf", "C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/arialbi.ttf"])
-# Config.set('kivy', 'default_font', ['Izhitsa', 'Izhitsa.ttf'])
-# Config.write() 
+#Config.set('kivy', 'default_font', ['Izhitsa', 'Izhitsa.ttf'])
+#Config.write() 
 
 from kivy.app import App
 from kivy.uix.label import Label
@@ -19,9 +19,12 @@ from kivy.uix.carousel import Carousel
 from kivy.uix.dropdown import DropDown
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
+from kivy.uix.vkeyboard import VKeyboard
 from kivy.uix.screenmanager import Screen
+from kivy.uix.floatlayout import FloatLayout
  
 LabelBase.register(name='Teremok', fn_regular='Teremok.ttf') #, fn_bold=''
+#VKeyboard.layout = 'numeric.json'
 
 food_dict = {
              #Фруктовые
@@ -221,6 +224,9 @@ foodcounterscreenlayout.add_widget(s2_reset_button)
 foodcounterscreenlayout.add_widget(s2_calories_label)
 foodcounterscreenlayout.add_widget(s2_selection_button)
 
+foodcounterscreenlayout2 = FloatLayout()
+foodcounterscreenlayout2.add_widget(VKeyboard())
+
                
 def s2_dropdownmenu(dictionary, *args):
      
@@ -250,7 +256,10 @@ def on_key_a(keyboard, keycode, text, modifiers):
     
 def dropsearch(instance):
     s2_dropdown.open(s2_selection_button)
-    Window.request_keyboard(None, s2_selection_button).widget.layout = 'numeric.json'
+    #FoodCounterScreen.add_widget(foodcounterscreenlayout2)
+    vkeyboard = Window.request_keyboard(None, s2_selection_button).widget
+    vkeyboard.layout = 'numeric.json'
+    
     
     #Window.request_keyboard(None, s2_selection_button, input_type='text').bind(on_key_down=on_key_a)
 
@@ -258,6 +267,7 @@ s2_selection_button.bind(on_release=dropsearch)
 s2_dropdown.bind(on_select=lambda instance, x: setattr(s2_selection_button, 'text', x))
 
 FoodCounterScreen.add_widget(foodcounterscreenlayout)
+
 
 carousel = Carousel(direction='right')
 carousel.add_widget(DietCounterScreen)
