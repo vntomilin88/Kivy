@@ -42,6 +42,7 @@ food_dict = {
 
 food_sorter = {}
 
+
 mainmenufontsize = 120
 teremokfont = 'Teremok'
 
@@ -215,16 +216,18 @@ selection_button.bind(on_release=dropdown.open)
 DietCounterScreen.add_widget(mainlayout)
 
 #FOODCOUNTERSCREEN
+s2_food_sorter = {}
+
 FoodCounterScreen = Screen(name='FoodCounter')
 
 s2_reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
 s2_calories_label = Label(text='0 ккал/г', font_size=300, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}) # 
 s2_selection_button = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize) #, size_hint=(0.5, 0.5)
 s2_dropdown = DropDown()
-s2_portion_input = TextInput(text='1', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1), 
+s2_portion_input = TextInput(text='', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1), 
 
 foodcounterscreenlayout = BoxLayout(orientation='vertical')
-foodcounterscreenlayout.add_widget(s2_portion_input)
+# foodcounterscreenlayout.add_widget(s2_portion_input)
 foodcounterscreenlayout.add_widget(s2_reset_button)
 foodcounterscreenlayout.add_widget(s2_calories_label)
 foodcounterscreenlayout.add_widget(s2_selection_button)
@@ -288,18 +291,26 @@ s2_dropdownmenu(food_dict)
     
     
 def on_key_a(*args):
-    # for key,value in food_dict.items():
-    #     if keycode[1] == key[0]:
-    #         food_sorter[key]=value
-    #     else:
-    #         pass
+    
+    s2_food_sorter = {}
+    
+    for key,value in food_dict.items():
+        if key[0] == str(s2_portion_input.text.upper()): #
+            s2_food_sorter[key]=value
+        else:
+            pass
+    
+    s2_dropdownmenu(s2_food_sorter)
     
     # s2_dropdownmenu(food_sorter)
     # print(keycode)
     # print(keyboard)
     # s2_calories_label.text = str(text)
-    s2_calories_label.text = s2_portion_input.text
+    
+    # s2_calories_label.text = s2_portion_input.text
     s2_portion_input.text = ''
+    
+    #Window.request_keyboard(None, s2_selection_button).release()
     
     # if keycode[1] == 'ф':
     #     s2_calories_label.text = keycode[1]
