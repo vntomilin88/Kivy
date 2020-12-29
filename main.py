@@ -224,10 +224,11 @@ s2_dropdown = DropDown()
 s2_portion_input = TextInput(text='1', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1), 
 
 foodcounterscreenlayout = BoxLayout(orientation='vertical')
+foodcounterscreenlayout.add_widget(s2_portion_input)
 foodcounterscreenlayout.add_widget(s2_reset_button)
 foodcounterscreenlayout.add_widget(s2_calories_label)
 foodcounterscreenlayout.add_widget(s2_selection_button)
-foodcounterscreenlayout.add_widget(s2_portion_input)
+
 
 numeric_keyboard_layout = FloatLayout()
 numeric_keyboard_coords_x = [0, .1, .2, .3, .1, .2, .3, .1, .2, .3]
