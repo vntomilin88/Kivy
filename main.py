@@ -298,7 +298,8 @@ def on_key_a(*args):
     # print(keycode)
     # print(keyboard)
     # s2_calories_label.text = str(text)
-    s2_calories_label.text = s2_portion_input.text[-1]
+    s2_calories_label.text = s2_portion_input.text
+    s2_portion_input.text = ''
     
     # if keycode[1] == 'ф':
     #     s2_calories_label.text = keycode[1]
@@ -312,7 +313,8 @@ def dropsearch(instance):
     # vkeyboard.layout = 'numeric.json'
     
     # Window.request_keyboard(None, s2_selection_button).bind(on_key_down=on_key_a)
-    Window.request_keyboard(None, s2_portion_input)
+    Window.request_keyboard(None, s2_selection_button)
+    s2_portion_input.focus = True
     Window.on_key_up = on_key_a
 
 s2_selection_button.bind(on_release=dropsearch)
