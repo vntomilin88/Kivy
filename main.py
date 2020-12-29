@@ -14,20 +14,16 @@ from kivy.app import App
 
 from kivy.uix.label import Label
 from kivy.uix.button import Button
-from kivy.uix.widget import Widget
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.uix.carousel import Carousel
 from kivy.uix.dropdown import DropDown
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
-from kivy.uix.vkeyboard import VKeyboard
 from kivy.uix.screenmanager import Screen
-from kivy.uix.floatlayout import FloatLayout
 
  
 LabelBase.register(name='Teremok', fn_regular='Teremok.ttf') #, fn_bold=''
-#VKeyboard.layout = 'numeric.json'
 
 food_dict = {
              #Фруктовые
@@ -227,24 +223,11 @@ s2_dropdown = DropDown()
 s2_portion_input = TextInput(text='', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1), 
 
 foodcounterscreenlayout = BoxLayout(orientation='vertical')
-# foodcounterscreenlayout.add_widget(s2_portion_input)
 foodcounterscreenlayout.add_widget(s2_reset_button)
 foodcounterscreenlayout.add_widget(s2_calories_label)
 foodcounterscreenlayout.add_widget(s2_selection_button)
 
 
-numeric_keyboard_layout = FloatLayout()
-numeric_keyboard_coords_x = [0, .1, .2, .3, .1, .2, .3, .1, .2, .3]
-numeric_keyboard_coords_y = [0, .3, .3, .3, .2, .2, .2, .1, .1, .1]
-
-# def on_key(instance):
-#     s2_calories_label.text = instance.text
-    
-# for num in range(1,10):
-#     globals()['button_'+str(num)] = Button(text=str(num), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(.1, .1), pos_hint={'x':numeric_keyboard_coords_x[num], 'y':numeric_keyboard_coords_y[num]})
-#     numeric_keyboard_layout.add_widget(globals()['button_'+str(num)])
-#     globals()['button_'+str(num)].bind(on_press=on_key)
-               
 def s2_dropdownmenu(dictionary, *args):
      
     s2_dropdown.clear_widgets()
@@ -256,77 +239,22 @@ def s2_dropdownmenu(dictionary, *args):
 
 s2_dropdownmenu(food_dict)
 
-# class MyKeyboardListener(Widget):
-
-#     def __init__(self, **kwargs):
-#         super(MyKeyboardListener, self).__init__(**kwargs)
-#         self._keyboard = Window.request_keyboard(
-#             self._keyboard_closed, self, 'text')
-#         if self._keyboard.widget:
-#             vkeyboard = self._keyboard.widget
-#             vkeyboard.layout = 'numeric.json'
-#             #pass
-#         self._keyboard.bind(on_key_down=self._on_keyboard_down)
-
-#     def _keyboard_closed(self):
-#         print('My keyboard have been closed!')
-#         self._keyboard.unbind(on_key_down=self._on_keyboard_down)
-#         self._keyboard = None
-
-#     def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
-#         print('The key', keycode, 'have been pressed')
-#         print(' - text is %r' % text)
-#         print(' - modifiers are %r' % modifiers)
-
-#         # Keycode is composed of an integer + a string
-#         # If we hit escape, release the keyboard
-#         if keycode[1] == 'escape':
-#             keyboard.release()
-
-#         # Return True to accept the key. Otherwise, it will be used by
-#         # the system.
-#         return True
-
-
-    
-    
 def on_key_a(*args):
-    
     s2_food_sorter = {}
-    
     for key,value in food_dict.items():
-        if key[0] == str(s2_portion_input.text.upper()): #
+        if key[0] == str(s2_portion_input.text[-1].upper()): #
             s2_food_sorter[key]=value
         else:
             pass
     
     s2_dropdownmenu(s2_food_sorter)
     
-    # s2_dropdownmenu(food_sorter)
-    # print(keycode)
-    # print(keyboard)
-    # s2_calories_label.text = str(text)
-    
-    # s2_calories_label.text = s2_portion_input.text
-    s2_portion_input.text = ''
-    
-    #Window.request_keyboard(None, s2_selection_button).release()
-    
-    # if keycode[1] == 'ф':
-    #     s2_calories_label.text = keycode[1]
-    #     keyboard.release()
     
 def dropsearch(instance):
     s2_dropdown.open(s2_selection_button)
-    # FoodCounterScreen.add_widget(numeric_keyboard_layout)
-    # VKeyboard().bind(on_key_down=on_key_a)
-    # return Window.request_keyboard(None, s2_selection_button).widget
-    # vkeyboard.layout = 'numeric.json'
-    
-    # Window.request_keyboard(None, s2_selection_button).bind(on_key_down=on_key_a)
     Window.request_keyboard(None, s2_selection_button)
     s2_portion_input.focus = True
-    Window.on_key_up = on_key_a
+    s2_portion_input.bind(text=on_key_a)
 
 s2_selection_button.bind(on_release=dropsearch)
 s2_dropdown.bind(on_select=lambda instance, x: setattr(s2_selection_button, 'text', x))
