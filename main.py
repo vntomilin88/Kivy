@@ -221,7 +221,7 @@ s2_reset_button = Button(background_normal='Fenix.jpg', background_down='Fenix.j
 s2_calories_label = Label(text='0 ккал/г', font_size=300, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}) # 
 s2_selection_button = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize) #, size_hint=(0.5, 0.5)
 s2_dropdown = DropDown()
-s2_portion_input = TextInput(multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1), 
+s2_portion_input = TextInput(text='1', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1), 
 
 foodcounterscreenlayout = BoxLayout(orientation='vertical')
 foodcounterscreenlayout.add_widget(s2_reset_button)
@@ -286,7 +286,7 @@ s2_dropdownmenu(food_dict)
 
     
     
-def on_key_a(keyboard, keycode, text, modifiers):
+def on_key_a(*args):
     # for key,value in food_dict.items():
     #     if keycode[1] == key[0]:
     #         food_sorter[key]=value
@@ -296,7 +296,8 @@ def on_key_a(keyboard, keycode, text, modifiers):
     # s2_dropdownmenu(food_sorter)
     # print(keycode)
     # print(keyboard)
-    s2_calories_label.text = str(text)
+    # s2_calories_label.text = str(text)
+    s2_calories_label.text = s2_portion_input.text[-1]
     
     # if keycode[1] == 'ф':
     #     s2_calories_label.text = keycode[1]
@@ -309,8 +310,9 @@ def dropsearch(instance):
     # return Window.request_keyboard(None, s2_selection_button).widget
     # vkeyboard.layout = 'numeric.json'
     
-    Window.request_keyboard(None, s2_selection_button).bind(on_key_down=on_key_a)
-    #Window.on_key_down = on_key_a
+    # Window.request_keyboard(None, s2_selection_button).bind(on_key_down=on_key_a)
+    Window.request_keyboard(None, s2_portion_input)
+    Window.on_key_up = on_key_a
 
 s2_selection_button.bind(on_release=dropsearch)
 s2_dropdown.bind(on_select=lambda instance, x: setattr(s2_selection_button, 'text', x))
