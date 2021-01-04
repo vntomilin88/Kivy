@@ -99,7 +99,7 @@ search_input_s1 = TextInput(text='', font_name=teremokfont, foreground_color=(1,
 selection_button_s1 = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
 food_menu_s1 = DropDown()
 
-portion_input_s1 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.4)) 
+portion_input_s1 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.37)) 
 
 add_button_s1 = Button(text='+', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
         
@@ -215,11 +215,12 @@ carb_label_s2 = Label(text='0 углеводов', font_name=teremokfont, color=
 search_input_s2 = TextInput(text='', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),
 selection_button_s2 = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
 food_menu_s2 = DropDown()
-portion_input_s2 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.4))  
+portion_input_s2 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.37))  
 add_button_s2 = Button(text='+', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5))
 final_weight_input_s2 = TextInput(multiline=False, font_name=teremokfont,  font_size=120, size_hint=(0.5, 0.25), pos_hint={'center_x': .5, 'center_y': .5}) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),  
 spacer1_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
 spacer2_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
+spacer3_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
 
     #Row 3
 row3_s2 = BoxLayout(padding=0, orientation='horizontal')
@@ -239,6 +240,10 @@ row5_s2.add_widget(spacer1_s2)
 row6_s2 = BoxLayout(padding=0, orientation='horizontal')
 row6_s2.add_widget(spacer2_s2)
 
+#Row 7
+row7_s2 = BoxLayout(padding=0, orientation='horizontal')
+row7_s2.add_widget(spacer3_s2)
+
 foodcounterscreenlayout = BoxLayout(orientation='vertical')
 foodcounterscreenlayout.add_widget(log_button_s2) #Row 1
 foodcounterscreenlayout.add_widget(calories_per_g_label_s2) #Row 2
@@ -246,6 +251,7 @@ foodcounterscreenlayout.add_widget(row3_s2)
 foodcounterscreenlayout.add_widget(final_weight_input_s2) #Row 4
 foodcounterscreenlayout.add_widget(row5_s2)
 foodcounterscreenlayout.add_widget(row6_s2)
+foodcounterscreenlayout.add_widget(row7_s2)
 
 FoodCounterScreen.add_widget(foodcounterscreenlayout)
 
