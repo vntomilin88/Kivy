@@ -99,7 +99,7 @@ search_input_s1 = TextInput(text='', font_name=teremokfont, foreground_color=(1,
 selection_button_s1 = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
 food_menu_s1 = DropDown()
 
-portion_input_s1 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.5)) 
+portion_input_s1 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.4)) 
 
 add_button_s1 = Button(text='+', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
         
@@ -208,14 +208,14 @@ log_s2 = Label(text='', font_name=teremokfont, font_size=mainmenufontsize, pos_h
 log_button_s2 = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
 calories_label_s2 = Label(text='0 ккал/г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}) # 
 total_weight_label_s2 = Label(text='0 г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
-calories_per_g_label_s2 = Label(text='0 ккал/г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
+calories_per_g_label_s2 = Label(text='0 ккал/г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}, size_hint=(0.75, 1))
 protein_label_s2 = Label(text='0 белков', font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
 fat_label_s2 = Label(text='0 жиров', font_name=teremokfont, color=(1,0.874,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
 carb_label_s2 = Label(text='0 углеводов', font_name=teremokfont, color=(0.65,0,0.12,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
 search_input_s2 = TextInput(text='', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),
 selection_button_s2 = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
 food_menu_s2 = DropDown()
-portion_input_s2 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.5))  
+portion_input_s2 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.4))  
 add_button_s2 = Button(text='+', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5))
 final_weight_input_s2 = TextInput(multiline=False, font_name=teremokfont,  font_size=120, size_hint=(0.5, 0.25), pos_hint={'center_x': .5, 'center_y': .5}) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),  
 spacer1_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
