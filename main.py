@@ -84,12 +84,12 @@ food_sorter_s1 = {}
 DietCounterScreen = Screen(name='DietCounter')
 
 #Elements s1
-log_s1 = Label(text='', font_name=teremokfont, font_size=40, pos_hint={'center_x': .5, 'center_y': .5})
+log_s1 = Label(text='', font_name=teremokfont, font_size=mainmenufontsize, pos_hint={'center_x': .5, 'center_y': .5})
 log_button_s1 = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
-calories_label_s1 = Label(text='0', font_name=teremokfont, font_size=300, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
+calories_label_s1 = Label(text='0', font_name=teremokfont, font_size=270, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
 calories_text_label_s1 = Label(text='ккал', font_name=teremokfont, font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
-total_weight_label_s1 = Label(text='0 г', font_size=300, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
-calories_per_g_label_s1 = Label(text='0 ккал/г', font_size=300, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
+total_weight_label_s1 = Label(text='0 г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
+calories_per_g_label_s1 = Label(text='0 ккал/г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
 protein_label_s1 = Label(text='0 белков', font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
 fat_label_s1 = Label(text='0 жиров', font_name=teremokfont, color=(1,0.874,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
 carb_label_s1 = Label(text='0 углеводов', font_name=teremokfont, color=(0.65,0,0.12,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
@@ -99,7 +99,7 @@ search_input_s1 = TextInput(text='', font_name=teremokfont, foreground_color=(1,
 selection_button_s1 = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
 food_menu_s1 = DropDown()
 
-portion_input_s1 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=120, size_hint=(0.25, 0.5)) 
+portion_input_s1 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.5)) 
 
 add_button_s1 = Button(text='+', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5)) #, size_hint=(None, None)
         
@@ -188,14 +188,14 @@ def base(instance, x, food_dict):
         carb_base_label_s1.text = str(round((float(x)*float(food_dict[selection_button_s1.text][3])))) +' углеводов'
 
 #POPUP S1
-popup_log_s1 = Popup(title='~ Откушано ~', title_font=teremokfont, title_size=60, title_align='center', separator_color=(1,1,1,1), background_color=(0,0,0,0.75), content=log_s1, size_hint=(0.9, 0.9)) #, size=(400, 400)
+popup_log_s1 = Popup(title='~ Откушано ~', title_font=teremokfont, title_size=160, title_align='center', separator_color=(1,1,1,1), background_color=(0,0,0,0.75), content=log_s1, size_hint=(0.9, 0.9)) #, size=(400, 400)
         
 #Logic
 log_button_s1.bind(on_release=popup_log_s1.open)
 dropdownmenu(everyday_food_dict, food_menu_s1)
 selection_button_s1.bind(on_release=lambda instance: dropsearch(food_menu_s1, selection_button_s1, search_input_s1, food_sorter_s1, everyday_food_dict))
 food_menu_s1.bind(on_select=lambda instance, x: dropdownbind(x, selection_button_s1, portion_input_s1))
-portion_input_s1.bind(text=lambda instance, x: base(instance, x, everyday_food_dict))
+portion_input_s1.bind(text=lambda instance, x: base(instance, x, everyday_food_dict), on_text_validate=lambda instance: addition(log_s1, selection_button_s1, portion_input_s1, everyday_food_dict, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1, search_input_s1, food_menu_s1, '',))
 add_button_s1.bind(on_press=lambda instance: addition(log_s1, selection_button_s1, portion_input_s1, everyday_food_dict, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1, search_input_s1, food_menu_s1, '',))
 
 #FOODCOUNTERSCREEN (Screen 2 - s2)
@@ -203,22 +203,23 @@ food_sorter_s2 = {}
 
 FoodCounterScreen = Screen(name='FoodCounter')
 
-#Elements s1
-log_s2 = Label(text='', font_name=teremokfont, font_size=40, pos_hint={'center_x': .5, 'center_y': .5})
+#Elements s2
+log_s2 = Label(text='', font_name=teremokfont, font_size=mainmenufontsize, pos_hint={'center_x': .5, 'center_y': .5})
 log_button_s2 = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
-calories_label_s2 = Label(text='0 ккал/г', font_size=300, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}) # 
-total_weight_label_s2 = Label(text='0 г', font_size=300, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
-calories_per_g_label_s2 = Label(text='0 ккал/г', font_size=300, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
+calories_label_s2 = Label(text='0 ккал/г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}) # 
+total_weight_label_s2 = Label(text='0 г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
+calories_per_g_label_s2 = Label(text='0 ккал/г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
 protein_label_s2 = Label(text='0 белков', font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
 fat_label_s2 = Label(text='0 жиров', font_name=teremokfont, color=(1,0.874,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
 carb_label_s2 = Label(text='0 углеводов', font_name=teremokfont, color=(0.65,0,0.12,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
 search_input_s2 = TextInput(text='', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),
-selection_button_s2 = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize) #, size_hint=(0.5, 0.5)
+selection_button_s2 = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
 food_menu_s2 = DropDown()
-portion_input_s2 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=120, size_hint=(0.25, 0.5))  
+portion_input_s2 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.5))  
 add_button_s2 = Button(text='+', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5))
-final_weight_input_s2 = TextInput(multiline=False, font_name=teremokfont,  font_size=120, size_hint=(0.25, 0.5), pos_hint={'center_x': .5, 'center_y': .5}) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),  
-spacer_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
+final_weight_input_s2 = TextInput(multiline=False, font_name=teremokfont,  font_size=120, size_hint=(0.5, 0.25), pos_hint={'center_x': .5, 'center_y': .5}) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),  
+spacer1_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
+spacer2_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
 
     #Row 3
 row3_s2 = BoxLayout(padding=0, orientation='horizontal')
@@ -230,9 +231,13 @@ row3_s2.add_widget(add_button_s2)
 
 #Row 5
 row5_s2 = BoxLayout(padding=0, orientation='horizontal')
-row5_s2.add_widget(spacer_s2)
+row5_s2.add_widget(spacer1_s2)
 # row5_s2.add_widget(total_weight_label_s2)
 # row5_s2.add_widget(calories_per_g_label_s2)
+
+#Row 6
+row6_s2 = BoxLayout(padding=0, orientation='horizontal')
+row6_s2.add_widget(spacer2_s2)
 
 foodcounterscreenlayout = BoxLayout(orientation='vertical')
 foodcounterscreenlayout.add_widget(log_button_s2) #Row 1
@@ -240,17 +245,19 @@ foodcounterscreenlayout.add_widget(calories_per_g_label_s2) #Row 2
 foodcounterscreenlayout.add_widget(row3_s2)
 foodcounterscreenlayout.add_widget(final_weight_input_s2) #Row 4
 foodcounterscreenlayout.add_widget(row5_s2)
+foodcounterscreenlayout.add_widget(row6_s2)
 
 FoodCounterScreen.add_widget(foodcounterscreenlayout)
 
 #POPUP S2
-popup_log_s2 = Popup(title='~ Добавленно ~', title_font=teremokfont, title_size=60, title_align='center', separator_color=(1,1,1,1), background_color=(0,0,0,0.75), content=log_s2, size_hint=(0.9, 0.9)) #, size=(400, 400)
+popup_log_s2 = Popup(title='~ Добавленно ~', title_font=teremokfont, title_size=160, title_align='center', separator_color=(1,1,1,1), background_color=(0,0,0,0.75), content=log_s2, size_hint=(0.9, 0.9)) #, size=(400, 400)
 
 #Logic
 log_button_s2.bind(on_release=popup_log_s2.open)
 dropdownmenu(ingredients_dict, food_menu_s2)
 selection_button_s2.bind(on_release=lambda instance: dropsearch(food_menu_s2, selection_button_s2, search_input_s2, food_sorter_s2, ingredients_dict))
 food_menu_s2.bind(on_select=lambda instance, x: dropdownbind(x, selection_button_s2, portion_input_s2))
+portion_input_s2.bind(on_text_validate=lambda instance: addition(log_s2, selection_button_s2, portion_input_s2, ingredients_dict, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2, search_input_s2, food_menu_s2, ' ккал',))
 add_button_s2.bind(on_press=lambda instance: addition(log_s2, selection_button_s2, portion_input_s2, ingredients_dict, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2, search_input_s2, food_menu_s2, ' ккал',))
 final_weight_input_s2.bind(on_text_validate=lambda instance: setattr(calories_per_g_label_s2, 'text', str(round(float(calories_label_s2.text.split()[0])/float(final_weight_input_s2.text),2))))
 
