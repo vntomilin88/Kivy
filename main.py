@@ -39,7 +39,7 @@ def dropdownmenu(food_sorter, food_menu):
     food_menu.clear_widgets()
      
     for key in food_sorter:
-        btn = Button(text=key, background_color=(0,0,0,1), font_name=teremokfont, font_size=mainmenufontsize, size_hint_y=None) #, height=120
+        btn = Button(text=key, background_color=(0,0,0,1), font_name=teremokfont, font_size=110, size_hint_y=None) #, height=120
         btn.bind(on_release=lambda btn: food_menu.select(btn.text))
         food_menu.add_widget(btn)
 
@@ -84,7 +84,7 @@ food_sorter_s1 = {}
 DietCounterScreen = Screen(name='DietCounter')
 
 #Elements s1
-log_s1 = Label(text='', font_name=teremokfont, font_size=mainmenufontsize, pos_hint={'center_x': .5, 'center_y': .5})
+log_s1 = Label(text='', font_name=teremokfont, font_size=90, pos_hint={'center_x': .5, 'center_y': .5})
 log_button_s1 = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
 calories_label_s1 = Label(text='0', font_name=teremokfont, font_size=270, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
 calories_text_label_s1 = Label(text='ккал', font_name=teremokfont, font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
@@ -109,7 +109,8 @@ protein_base_label_s1 = Label(text='', font_name=teremokfont, color=(1,1,1,0.6),
 fat_base_label_s1 = Label(text='', font_name=teremokfont, color=(1,0.874,0,0.6),  font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
 carb_base_label_s1 = Label(text='', font_name=teremokfont, color=(0.65,0,0.12,0.6),  font_size=70) #, pos_hint={'center_x': .5, 'center_y': .5}
 
-spacer_s1 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
+spacer1_s1 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
+spacer2_s1 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5}) # [255,255,255,255]
 
     #Calorie Box
 caloriebox_s1 = BoxLayout(padding=20, orientation='vertical')
@@ -159,7 +160,11 @@ row4_s1.add_widget(pfcbasebox_s1)
 
     #Row 5
 row5_s1 = BoxLayout(padding=0, orientation='horizontal')
-row5_s1.add_widget(spacer_s1)
+row5_s1.add_widget(spacer1_s1)
+ 
+   #Row 6
+row6_s1 = BoxLayout(padding=0, orientation='horizontal')
+row6_s1.add_widget(spacer2_s1)
 
     #Main Layout
 dietcounterscreenlayout = BoxLayout(padding=0, orientation='vertical')
@@ -204,7 +209,7 @@ food_sorter_s2 = {}
 FoodCounterScreen = Screen(name='FoodCounter')
 
 #Elements s2
-log_s2 = Label(text='', font_name=teremokfont, font_size=mainmenufontsize, pos_hint={'center_x': .5, 'center_y': .5})
+log_s2 = Label(text='', font_name=teremokfont, font_size=90, pos_hint={'center_x': .5, 'center_y': .5})
 log_button_s2 = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
 calories_label_s2 = Label(text='0 ккал/г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}) # 
 total_weight_label_s2 = Label(text='0 г', font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
@@ -215,7 +220,7 @@ carb_label_s2 = Label(text='0 углеводов', font_name=teremokfont, color=
 search_input_s2 = TextInput(text='', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),
 selection_button_s2 = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
 food_menu_s2 = DropDown()
-portion_input_s2 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.37))  
+portion_input_s2 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.45))  
 add_button_s2 = Button(text='+', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5))
 final_weight_input_s2 = TextInput(multiline=False, font_name=teremokfont,  font_size=120, size_hint=(0.5, 0.25), pos_hint={'center_x': .5, 'center_y': .5}) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),  
 spacer1_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
