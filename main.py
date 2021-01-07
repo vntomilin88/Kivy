@@ -72,7 +72,7 @@ def addition(caloriecount, log_text_file, log, selection_button, portion_input, 
         protein_label.text = str(round(float(protein_label.text.split()[0]) + float(portion_input.text)*float(food_dict[selection_button.text][1])))+' белков'
         fat_label.text = str(round(float(fat_label.text.split()[0]) + float(portion_input.text)*float(food_dict[selection_button.text][2])))+' жиров'
         carb_label.text = str(round(float(carb_label.text.split()[0]) + float(portion_input.text)*float(food_dict[selection_button.text][3])))+' углеводов'
-        open(caloriecount, mode='w+', encoding='utf-8').write(f'{calories_label.text.split()[0]}\n{total_weight_label.text.split()[0]}г\n{calories_per_g_label.text.split()[0]}ккал/г\n{protein_label.text.split()[0]} белков\n{fat_label.text.split()[0]} жиров\n{carb_label.text.split()[0]} углеводов')
+        open(caloriecount, mode='w+', encoding='utf-8').write(f'{calories_label.text.split()[0]}\n{total_weight_label.text.split()[0]} г\n{calories_per_g_label.text.split()[0]} ккал/г\n{protein_label.text.split()[0]} белков\n{fat_label.text.split()[0]} жиров\n{carb_label.text.split()[0]} углеводов')
         open(log_text_file, mode='a', encoding='utf-8').write(f'{portion_input.text}г/шт {selection_button.text}: {str(round(float(portion_input.text)*float(food_dict[selection_button.text][0])))}ккал\n') #f'{log.text}{portion_input.text}г/шт {selection_button.text}: {str(round(float(portion_input.text)*float(food_dict[selection_button.text][0])))}ккал\n'
         log.text = open(log_text_file, encoding='utf-8').read()
         portion_input.text = ''
