@@ -94,13 +94,13 @@ DietCounterScreen = Screen(name='DietCounter')
 
 #Elements s1
 log_button_s1 = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
-calories_label_s1 = Label(text=open('Databases/caloriecount_s1', mode='r', encoding='utf-8').readlines()[0], font_name=teremokfont, font_size=270, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
+calories_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[0], font_name=teremokfont, font_size=270, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
 calories_text_label_s1 = Label(text='ккал', font_name=teremokfont, font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
-total_weight_label_s1 = Label(text=open('Databases/caloriecount_s1', mode='r', encoding='utf-8').readlines()[1], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
-calories_per_g_label_s1 = Label(text=open('Databases/caloriecount_s1', mode='r', encoding='utf-8').readlines()[2], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
-protein_label_s1 = Label(text=open('Databases/caloriecount_s1', mode='r', encoding='utf-8').readlines()[3], font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-fat_label_s1 = Label(text=open('Databases/caloriecount_s1', mode='r', encoding='utf-8').readlines()[4], font_name=teremokfont, color=(1,0.874,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-carb_label_s1 = Label(text=open('Databases/caloriecount_s1', mode='r', encoding='utf-8').readlines()[5], font_name=teremokfont, color=(0.65,0,0.12,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+total_weight_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[1], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
+calories_per_g_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[2], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
+protein_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[3], font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+fat_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[4], font_name=teremokfont, color=(1,0.874,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+carb_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[5], font_name=teremokfont, color=(0.65,0,0.12,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
 
 search_input_s1 = TextInput(text='', font_name=teremokfont, foreground_color=(1,1,1,1), background_color=(0,0,0,0), multiline=False, font_size=120, size_hint=(0.125, 0.5))
 
@@ -210,7 +210,7 @@ pp_s1_layout.add_widget(log_s1_reset_button) #, size_hint=(0.5, 0.5)
 
 popup_log_s1 = Popup(title='~ Откушано ~', title_font=teremokfont, title_size=160, title_align='center', separator_color=(1,1,1,1), background_color=(0,0,0,0.75), content=pp_s1_layout, size_hint=(0.9, 0.9)) #, size=(400, 400)
 
-log_s1_reset_button.bind(on_release=lambda instance: log_clear('Databases/caloriecount_s1', 'Databases/log_s1.txt', log_s1, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1))
+log_s1_reset_button.bind(on_release=lambda instance: log_clear('Databases/caloriecount_s1.txt', 'Databases/log_s1.txt', log_s1, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1))
 
 #Logic
 log_button_s1.bind(on_release=popup_log_s1.open)
@@ -218,8 +218,8 @@ dropdownmenu(everyday_food_dict, food_menu_s1)
 selection_button_s1.bind(on_release=lambda instance: dropsearch(food_menu_s1, selection_button_s1, search_input_s1, food_sorter_s1, everyday_food_dict))
 food_menu_s1.bind(on_select=lambda instance, x: dropdownbind(x, selection_button_s1, portion_input_s1))
 portion_input_s1.bind(text=lambda instance, x: base(instance, x, everyday_food_dict), 
-                      on_text_validate=lambda instance: addition('Databases/caloriecount_s1', 'Databases/log_s1.txt', log_s1, selection_button_s1, portion_input_s1, everyday_food_dict, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1, search_input_s1, food_menu_s1, '',))
-add_button_s1.bind(on_press=lambda instance: addition('Databases/caloriecount_s1', 'Databases/log_s1.txt', log_s1, selection_button_s1, portion_input_s1, everyday_food_dict, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1, search_input_s1, food_menu_s1, '',))
+                      on_text_validate=lambda instance: addition('Databases/caloriecount_s1.txt', 'Databases/log_s1.txt', log_s1, selection_button_s1, portion_input_s1, everyday_food_dict, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1, search_input_s1, food_menu_s1, '',))
+add_button_s1.bind(on_press=lambda instance: addition('Databases/caloriecount_s1.txt', 'Databases/log_s1.txt', log_s1, selection_button_s1, portion_input_s1, everyday_food_dict, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1, search_input_s1, food_menu_s1, '',))
 
 #FOODCOUNTERSCREEN (Screen 2 - s2)
 food_sorter_s2 = {}
@@ -229,12 +229,12 @@ FoodCounterScreen = Screen(name='FoodCounter')
 #Elements s2
 log_s2 = Label(text='', font_name=teremokfont, font_size=90, pos_hint={'center_x': .5, 'center_y': .5})
 log_button_s2 = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
-calories_label_s2 = Label(text=open('Databases/caloriecount_s2', mode='r', encoding='utf-8').readlines()[0], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}) # 
-total_weight_label_s2 = Label(text=open('Databases/caloriecount_s2', mode='r', encoding='utf-8').readlines()[1], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
-calories_per_g_label_s2 = Label(text=open('Databases/caloriecount_s2', mode='r', encoding='utf-8').readlines()[2], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}, size_hint=(0.75, 1))
-protein_label_s2 = Label(text=open('Databases/caloriecount_s2', mode='r', encoding='utf-8').readlines()[3], font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-fat_label_s2 = Label(text=open('Databases/caloriecount_s2', mode='r', encoding='utf-8').readlines()[4], font_name=teremokfont, color=(1,0.874,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
-carb_label_s2 = Label(text=open('Databases/caloriecount_s2', mode='r', encoding='utf-8').readlines()[5], font_name=teremokfont, color=(0.65,0,0.12,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+calories_label_s2 = Label(text=open('Databases/caloriecount_s2.txt', mode='r', encoding='utf-8').readlines()[0], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}) # 
+total_weight_label_s2 = Label(text=open('Databases/caloriecount_s2.txt', mode='r', encoding='utf-8').readlines()[1], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
+calories_per_g_label_s2 = Label(text=open('Databases/caloriecount_s2.txt', mode='r', encoding='utf-8').readlines()[2], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5}, size_hint=(0.75, 1))
+protein_label_s2 = Label(text=open('Databases/caloriecount_s2.txt', mode='r', encoding='utf-8').readlines()[3], font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+fat_label_s2 = Label(text=open('Databases/caloriecount_s2.txt', mode='r', encoding='utf-8').readlines()[4], font_name=teremokfont, color=(1,0.874,0,1),  font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
+carb_label_s2 = Label(text=open('Databases/caloriecount_s2.txt', mode='r', encoding='utf-8').readlines()[5], font_name=teremokfont, color=(0.65,0,0.12,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
 search_input_s2 = TextInput(text='', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),
 selection_button_s2 = Button(text='Стандарт', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.5, 0.5)) #
 food_menu_s2 = DropDown()
@@ -288,15 +288,15 @@ pp_s2_layout.add_widget(log_s2_reset_button) #, size_hint=(0.5, 0.5)
 
 popup_log_s2 = Popup(title='~ Добавлено ~', title_font=teremokfont, title_size=160, title_align='center', separator_color=(1,1,1,1), background_color=(0,0,0,0.75), content=pp_s2_layout, size_hint=(0.9, 0.9)) #, size=(400, 400)
 
-log_s2_reset_button.bind(on_release=lambda instance: log_clear('Databases/caloriecount_s2', 'Databases/log_s2.txt', log_s2, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2))
+log_s2_reset_button.bind(on_release=lambda instance: log_clear('Databases/caloriecount_s2.txt', 'Databases/log_s2.txt', log_s2, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2))
 
 #Logic
 log_button_s2.bind(on_release=popup_log_s2.open)
 dropdownmenu(ingredients_dict, food_menu_s2)
 selection_button_s2.bind(on_release=lambda instance: dropsearch(food_menu_s2, selection_button_s2, search_input_s2, food_sorter_s2, ingredients_dict))
 food_menu_s2.bind(on_select=lambda instance, x: dropdownbind(x, selection_button_s2, portion_input_s2))
-portion_input_s2.bind(on_text_validate=lambda instance: addition('Databases/caloriecount_s2', 'Databases/log_s2.txt', log_s2, selection_button_s2, portion_input_s2, ingredients_dict, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2, search_input_s2, food_menu_s2, ' ккал',))
-add_button_s2.bind(on_press=lambda instance: addition('Databases/caloriecount_s2', 'Databases/log_s2.txt', log_s2, selection_button_s2, portion_input_s2, ingredients_dict, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2, search_input_s2, food_menu_s2, ' ккал',))
+portion_input_s2.bind(on_text_validate=lambda instance: addition('Databases/caloriecount_s2.txt', 'Databases/log_s2.txt', log_s2, selection_button_s2, portion_input_s2, ingredients_dict, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2, search_input_s2, food_menu_s2, ' ккал',))
+add_button_s2.bind(on_press=lambda instance: addition('Databases/caloriecount_s2.txt', 'Databases/log_s2.txt', log_s2, selection_button_s2, portion_input_s2, ingredients_dict, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2, search_input_s2, food_menu_s2, ' ккал',))
 final_weight_input_s2.bind(on_text_validate=lambda instance: setattr(calories_per_g_label_s2, 'text', str(round(float(calories_label_s2.text.split()[0])/float(final_weight_input_s2.text),2))))
 
 
