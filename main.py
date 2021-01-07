@@ -43,21 +43,24 @@ def dropdownmenu(food_sorter, food_menu):
         btn.bind(on_release=lambda btn: food_menu.select(btn.text))
         food_menu.add_widget(btn)
 
-def on_key(food_sorter, food_dict, search_input, food_menu):
+def on_key(food_sorter, food_dict, search_input, food_menu, x):
+    print(x)
     food_sorter = {}
     for key,value in food_dict.items():
-        if key[0] == str(search_input.text[-1].upper()): #
+        if key[0] == str(x[-1].upper()): #search_input.text
             food_sorter[key]=value
         else:
             pass
     
     dropdownmenu(food_sorter, food_menu)
+    search_input.text = x[-1]
     
 def dropsearch(food_menu, selection_button, search_input, food_sorter, food_dict):
     food_menu.open(selection_button)
     Window.request_keyboard(None, selection_button)
     search_input.focus = True
-    search_input.bind(text=lambda instance, x: on_key(food_sorter, food_dict, search_input, food_menu))
+    search_input.bind(text=lambda instance, x: on_key(food_sorter, food_dict, search_input, food_menu, x))
+
 
 def dropdownbind(x, selection_button, portion_input):
     setattr(selection_button, 'text', x) #setattr(object, name, value) - sets value of an attribute of an object
