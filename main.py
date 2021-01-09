@@ -32,19 +32,22 @@ LabelBase.register(name='Teremok', fn_regular='Teremok.ttf') #, fn_bold=''
 everyday_food_dict = {x[0]:x[1:] for x in list(csv.reader(open('Databases/Everyday.csv', encoding='utf-8')))} #создаём словарь из первого элемента листа .csv фаила как ключа, и остальных элементов как значения, используя словарное сокращение
 ingredients_dict = {x[0]:x[1:] for x in list(csv.reader(open('Databases/Ingredients.csv', encoding='utf-8')))}
 
+button_list = []
 
 #Functions
 def dropdownmenu(food_sorter, food_menu):
-     
-    food_menu.clear_widgets()
-     
+    
+    #food_menu.clear_widgets()
+    for btn in button_list:
+        food_menu.remove_widget(btn)
+        
     for key in food_sorter:
         btn = Button(text=key, background_color=(0,0,0,1), font_name=teremokfont, font_size=110, size_hint_y=None) #, height=120
         btn.bind(on_release=lambda btn: food_menu.select(btn.text))
+        button_list.append(btn)
         food_menu.add_widget(btn)
 
 def on_key(food_sorter, food_dict, search_input, food_menu, x):
-    print(x)
     food_sorter = {}
     for key,value in food_dict.items():
         if key[0] == str(x[-1].upper()): #search_input.text
@@ -60,7 +63,6 @@ def dropsearch(food_menu, selection_button, search_input, food_sorter, food_dict
     Window.request_keyboard(None, selection_button)
     search_input.focus = True
     search_input.bind(text=lambda instance, x: on_key(food_sorter, food_dict, search_input, food_menu, x))
-
 
 def dropdownbind(x, selection_button, portion_input):
     setattr(selection_button, 'text', x) #setattr(object, name, value) - sets value of an attribute of an object
