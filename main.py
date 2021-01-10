@@ -29,7 +29,7 @@ mainmenufontsize = 120
 teremokfont = 'Teremok'
  
 LabelBase.register(name='Teremok', fn_regular='Teremok.ttf') #, fn_bold=''
-android_path = 'Internal storage/Android/media/com.nextcloud.client/nextcloud/vntomilin88@oblaco.ddns.net%2Fnextcloud/Prima-Terra/Scripts/Calorie Counter App/Databases/Everyday.csv'
+android_path = '/Android/media/com.nextcloud.client/nextcloud/vntomilin88@oblaco.ddns.net%2Fnextcloud/Prima-Terra/Scripts/Calorie Counter App/Databases/Everyday.csv'
 everyday_food_dict = {x[0]:x[1:] for x in list(csv.reader(open(android_path, encoding='utf-8')))} #создаём словарь из первого элемента листа .csv фаила как ключа, и остальных элементов как значения, используя словарное сокращение
 ingredients_dict = {x[0]:x[1:] for x in list(csv.reader(open('Databases/Ingredients.csv', encoding='utf-8')))}
 
