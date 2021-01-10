@@ -96,7 +96,7 @@ def addition(caloriecount, log_text_file, log, selection_button, portion_input, 
      
 def log_clear(caloriecount, log_text_file, log, calories_label, total_weight_label, calories_per_g_label, protein_label, fat_label, carb_label):
     open(log_text_file, mode='w', encoding='utf-8')
-    log.text = SD_CARD
+    log.text = ''
     open(caloriecount, mode='w+', encoding='utf-8').write('0\n0 г\n0 ккал/г\n0 белков\n0 жиров\n0 углеводов')
     [calories_label.text, total_weight_label.text, calories_per_g_label.text, protein_label.text, fat_label.text, carb_label.text] = ['0', '0 г', '0 ккал/г', '0 белков', '0 жиров', '0 углеводов']
     
@@ -109,7 +109,7 @@ DietCounterScreen = Screen(name='DietCounter')
 #Elements s1
 log_button_s1 = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
 calories_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[0], font_name=teremokfont, font_size=270, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
-calories_text_label_s1 = Label(text='ккал', font_name=teremokfont, font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
+calories_text_label_s1 = Label(text=SD_CARD, font_name=teremokfont, font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
 total_weight_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[1], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
 calories_per_g_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[2], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
 protein_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[3], font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
