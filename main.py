@@ -24,13 +24,12 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import Screen
 
-from android.storage import primary_external_storage_path
+#from android.storage import primary_external_storage_path
 from android.permissions import request_permissions, Permission
-
 
 request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
 
-SD_CARD = primary_external_storage_path()
+#SD_CARD = primary_external_storage_path()
 
 dish_weight = 0
 mainmenufontsize = 120
@@ -109,7 +108,7 @@ DietCounterScreen = Screen(name='DietCounter')
 #Elements s1
 log_button_s1 = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
 calories_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[0], font_name=teremokfont, font_size=270, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None), bold=False, 
-calories_text_label_s1 = Label(text=SD_CARD, font_name=teremokfont, font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
+calories_text_label_s1 = Label(text='ккал', font_name=teremokfont, font_size=200, pos_hint={'center_x': .5, 'center_y': .5}) #size_hint=(None, None),
 total_weight_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[1], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
 calories_per_g_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[2], font_size=270, font_name=teremokfont, pos_hint={'center_x': .5, 'center_y': .5})
 protein_label_s1 = Label(text=open('Databases/caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[3], font_name=teremokfont, color=(1,1,1,1), font_size=80, pos_hint={'center_x': .5, 'center_y': .5})
