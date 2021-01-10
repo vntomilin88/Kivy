@@ -9,6 +9,7 @@ Created on Fri Nov 13 00:48:54 2020
 # Config.set('kivy', 'default_font', ["Arial", "C:/Windows/Fonts/arial.ttf", "C:/Windows/Fonts/ariali.ttf", "C:/Windows/Fonts/arialbd.ttf", "C:/Windows/Fonts/arialbi.ttf"])
 #Config.set('kivy', 'default_font', ['Izhitsa', 'Izhitsa.ttf'])
 #Config.write() 
+import os
 import csv
 
 from kivy.app import App
@@ -25,9 +26,9 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import Screen
 
 #from android.storage import primary_external_storage_path
-from android.permissions import request_permissions, Permission
+#from android.permissions import request_permissions, Permission
 
-request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
+#request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
 
 #SD_CARD = primary_external_storage_path()
 
@@ -95,7 +96,7 @@ def addition(caloriecount, log_text_file, log, selection_button, portion_input, 
      
 def log_clear(caloriecount, log_text_file, log, calories_label, total_weight_label, calories_per_g_label, protein_label, fat_label, carb_label):
     open(log_text_file, mode='w', encoding='utf-8')
-    log.text = ''
+    log.text = os.getenv('EXTERNAL_STORAGE')
     open(caloriecount, mode='w+', encoding='utf-8').write('0\n0 г\n0 ккал/г\n0 белков\n0 жиров\n0 углеводов')
     [calories_label.text, total_weight_label.text, calories_per_g_label.text, protein_label.text, fat_label.text, carb_label.text] = ['0', '0 г', '0 ккал/г', '0 белков', '0 жиров', '0 углеводов']
     
