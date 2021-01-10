@@ -24,13 +24,21 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import Screen
 
+from android.storage import primary_external_storage_path
+from android.permissions import request_permissions, Permission
+
+
+request_permissions([Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE])
+
+SD_CARD = primary_external_storage_path()
+
 dish_weight = 0
 mainmenufontsize = 120
 teremokfont = 'Teremok'
  
 LabelBase.register(name='Teremok', fn_regular='Teremok.ttf') #, fn_bold=''
-android_path = '/Android/media/com.nextcloud.client/nextcloud/vntomilin88@oblaco.ddns.net%2Fnextcloud/Prima-Terra/Scripts/Calorie Counter App/Databases/Everyday.csv'
-everyday_food_dict = {x[0]:x[1:] for x in list(csv.reader(open(android_path, encoding='utf-8')))} #создаём словарь из первого элемента листа .csv фаила как ключа, и остальных элементов как значения, используя словарное сокращение
+#android_path = 'Android/media/com.nextcloud.client/nextcloud/vntomilin88@oblaco.ddns.net%2Fnextcloud/Prima-Terra/Scripts/Calorie Counter App/Databases/Everyday.csv'
+everyday_food_dict = {x[0]:x[1:] for x in list(csv.reader(open('Databases/Everyday.csv', encoding='utf-8')))} #создаём словарь из первого элемента листа .csv фаила как ключа, и остальных элементов как значения, используя словарное сокращение
 ingredients_dict = {x[0]:x[1:] for x in list(csv.reader(open('Databases/Ingredients.csv', encoding='utf-8')))}
 
 button_list = []
@@ -88,7 +96,7 @@ def addition(caloriecount, log_text_file, log, selection_button, portion_input, 
      
 def log_clear(caloriecount, log_text_file, log, calories_label, total_weight_label, calories_per_g_label, protein_label, fat_label, carb_label):
     open(log_text_file, mode='w', encoding='utf-8')
-    log.text = ''
+    log.text = SD_CARD
     open(caloriecount, mode='w+', encoding='utf-8').write('0\n0 г\n0 ккал/г\n0 белков\n0 жиров\n0 углеводов')
     [calories_label.text, total_weight_label.text, calories_per_g_label.text, protein_label.text, fat_label.text, carb_label.text] = ['0', '0 г', '0 ккал/г', '0 белков', '0 жиров', '0 углеводов']
     
