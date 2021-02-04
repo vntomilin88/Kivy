@@ -35,7 +35,7 @@ from kivy.uix.screenmanager import Screen
 dish_weight = 0
 mainmenufontsize = 120
 teremokfont = 'Teremok'
-local_path = '/Databases/'
+local_path = 'Databases/'
 android_path = '/sdcard/Android/media/com.nextcloud.client/nextcloud/vntomilin88@oblaco.ddns.net%2Fnextcloud/Prima-Terra/Scripts/Calorie Counter App/Databases/'
 the_path = android_path
 
@@ -43,6 +43,8 @@ LabelBase.register(name='Teremok', fn_regular='Teremok.ttf') #, fn_bold=''
 
 everyday_food_dict = {x[0]:x[1:] for x in list(csv.reader(open(the_path + 'Everyday.csv', encoding='utf-8')))} #создаём словарь из первого элемента листа .csv фаила как ключа, и остальных элементов как значения, используя словарное сокращение
 ingredients_dict = {x[0]:x[1:] for x in list(csv.reader(open(the_path + 'Ingredients.csv', encoding='utf-8')))}
+recipe_dict = {x[0]:x[1:] for x in list(csv.reader(open(the_path + 'Recipes.csv', encoding='utf-8')))}
+#print(list(csv.reader(open(the_path + 'Recipes.csv', encoding='utf-8'))))
 
 button_list = []
 
@@ -76,10 +78,18 @@ def dropsearch(food_menu, selection_button, search_input, food_sorter, food_dict
     search_input.focus = True
     search_input.bind(text=lambda instance, x: on_key(food_sorter, food_dict, search_input, food_menu, x))
 
-def dropdownbind(x, selection_button, portion_input):
+def dropdownbind(x, selection_button, portion_input, recipe):
     setattr(selection_button, 'text', x) #setattr(object, name, value) - sets value of an attribute of an object
     Window.request_keyboard(None, selection_button)
     portion_input.focus = True
+    try:
+        recipe.text = ''
+        for component in recipe_dict[selection_button.text]:
+            recipe.text += f'{component}\n'
+    except:
+        pass
+        
+        
 
 def addition(caloriecount, log_text_file, log, selection_button, portion_input, food_dict, calories_label, total_weight_label, calories_per_g_label, protein_label, fat_label, carb_label, search_input, food_menu, kkal):
     if portion_input.text.isdigit() == True:
@@ -233,9 +243,9 @@ log_s1_reset_button.bind(on_release=lambda instance: log_clear(the_path + 'calor
 log_button_s1.bind(on_release=popup_log_s1.open)
 dropdownmenu(everyday_food_dict, food_menu_s1)
 selection_button_s1.bind(on_release=lambda instance: dropsearch(food_menu_s1, selection_button_s1, search_input_s1, food_sorter_s1, everyday_food_dict))
-food_menu_s1.bind(on_select=lambda instance, x: dropdownbind(x, selection_button_s1, portion_input_s1))
+food_menu_s1.bind(on_select=lambda instance, x: dropdownbind(x, selection_button_s1, portion_input_s1, spacer1_s1))
 portion_input_s1.bind(text=lambda instance, x: base(instance, x, everyday_food_dict), 
-                      on_text_validate=lambda instance: addition(android_path + 'caloriecount_s1.txt', android_path + 'log_s1.txt', log_s1, selection_button_s1, portion_input_s1, everyday_food_dict, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1, search_input_s1, food_menu_s1, '',))
+                      on_text_validate=lambda instance: addition(the_path + 'caloriecount_s1.txt', the_path + 'log_s1.txt', log_s1, selection_button_s1, portion_input_s1, everyday_food_dict, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1, search_input_s1, food_menu_s1, '',))
 add_button_s1.bind(on_press=lambda instance: addition(the_path + 'caloriecount_s1.txt', the_path + 'log_s1.txt', log_s1, selection_button_s1, portion_input_s1, everyday_food_dict, calories_label_s1, total_weight_label_s1, calories_per_g_label_s1, protein_label_s1, fat_label_s1, carb_label_s1, search_input_s1, food_menu_s1, '',))
 
 #FOODCOUNTERSCREEN (Screen 2 - s2)
@@ -257,7 +267,6 @@ selection_button_s2 = Button(text='Стандарт', background_color=(0,0,0,0)
 food_menu_s2 = DropDown()
 portion_input_s2 = TextInput(multiline=False, background_color=(0,0,0,0), font_name=teremokfont,  foreground_color=(1,1,1,1), font_size=mainmenufontsize, size_hint=(0.25, 0.45))  
 add_button_s2 = Button(text='+', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize, size_hint=(0.125, 0.5))
-final_weight_input_s2 = TextInput(multiline=False, font_name=teremokfont,  font_size=120, size_hint=(0.5, 0.25), pos_hint={'center_x': .5, 'center_y': .5}) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),  
 spacer1_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
 spacer2_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
 spacer3_s2 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
@@ -270,17 +279,17 @@ row3_s2.add_widget(selection_button_s2)
 row3_s2.add_widget(portion_input_s2)
 row3_s2.add_widget(add_button_s2)
 
-#Row 5
+    #Row 5
 row5_s2 = BoxLayout(padding=0, orientation='horizontal')
 row5_s2.add_widget(spacer1_s2)
 # row5_s2.add_widget(total_weight_label_s2)
 # row5_s2.add_widget(calories_per_g_label_s2)
 
-#Row 6
+    #Row 6
 row6_s2 = BoxLayout(padding=0, orientation='horizontal')
 row6_s2.add_widget(spacer2_s2)
 
-#Row 7
+    #Row 7
 row7_s2 = BoxLayout(padding=0, orientation='horizontal')
 row7_s2.add_widget(spacer3_s2)
 
@@ -288,39 +297,115 @@ foodcounterscreenlayout = BoxLayout(orientation='vertical')
 foodcounterscreenlayout.add_widget(log_button_s2) #Row 1
 foodcounterscreenlayout.add_widget(calories_per_g_label_s2) #Row 2
 foodcounterscreenlayout.add_widget(row3_s2)
-foodcounterscreenlayout.add_widget(final_weight_input_s2) #Row 4
 foodcounterscreenlayout.add_widget(row5_s2)
 foodcounterscreenlayout.add_widget(row6_s2)
 foodcounterscreenlayout.add_widget(row7_s2)
 
 FoodCounterScreen.add_widget(foodcounterscreenlayout)
 
+#Local Functions s2
+
+def add_dish(dish_name, final_weight):
+    dish_is_not_present = True
+    food_list = []
+    
+    for food in list(csv.reader(open(the_path + 'Everyday.csv', encoding='utf-8'))):
+        
+        if dish_name in food:
+            dish_is_not_present = False
+            food = [dish_name,round(float(calories_label_s2.text.split()[0])/float(final_weight),2),round(float(protein_label_s2.text.split()[0])/float(final_weight),2),round(float(fat_label_s2.text.split()[0])/float(final_weight),2),round(float(carb_label_s2.text.split()[0])/float(final_weight),2)]
+            food_list.append(food)
+        else:
+            food_list.append(food)
+    
+    csv.writer(open(the_path + 'Everyday.csv', 'w', newline='', encoding='utf-8'), delimiter=',').writerows(food_list)
+          
+    if dish_is_not_present:
+        csv.writer(open(the_path + 'Everyday.csv', 'a+', newline='', encoding='utf-8'), delimiter=',').writerow([dish_name,round(float(calories_label_s2.text.split()[0])/float(final_weight),2),round(float(protein_label_s2.text.split()[0])/float(final_weight),2),round(float(fat_label_s2.text.split()[0])/float(final_weight),2),round(float(carb_label_s2.text.split()[0])/float(final_weight),2)])
+        
 #POPUP S2
 pp_s2_layout = BoxLayout(padding=0, orientation='vertical')
+log_s2_dish_name_label = Label(text='Название кушанья:', font_name=teremokfont, font_size=90, pos_hint={'center_x': 0, 'center_y': .5}) #
+log_s2_dish_name_input = TextInput(text='', multiline=False, font_name=teremokfont, font_size=120, pos_hint={'center_x': .1, 'center_y': .5}, size_hint=(0.7, 0.4)) #
+log_s2_final_weight_label = Label(text='Итоговый вес:', font_name=teremokfont, font_size=90, pos_hint={'center_x': 0, 'center_y': .5}) #
+log_s2_final_weight_input = TextInput(text=str(round(float(total_weight_label_s2.text.split()[0]))), multiline=False, font_name=teremokfont,  font_size=120, pos_hint={'center_x': .1, 'center_y': .5}, size_hint=(0.7, 0.4)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),  
 log_s2 = Label(text=open(the_path + 'log_s2.txt', encoding='utf-8').read(), font_name=teremokfont, font_size=90, pos_hint={'center_x': .5, 'center_y': .5})
 log_s2_reset_button = Button(text='Отчистить', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize)
+log_s2_add_button = Button(text='Добавить', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize)
 
+pp_s2_dish_name_layout = BoxLayout(padding=0, orientation='horizontal')
+pp_s2_dish_name_layout.add_widget(log_s2_dish_name_label)
+pp_s2_dish_name_layout.add_widget(log_s2_dish_name_input)
+
+pp_s2_final_weight_layout = BoxLayout(padding=0, orientation='horizontal')
+pp_s2_final_weight_layout.add_widget(log_s2_final_weight_label)
+pp_s2_final_weight_layout.add_widget(log_s2_final_weight_input)
+
+pp_s2_button_layout = BoxLayout(padding=0, orientation='horizontal')
+pp_s2_button_layout.add_widget(log_s2_reset_button)
+pp_s2_button_layout.add_widget(log_s2_add_button)
+
+pp_s2_layout.add_widget(pp_s2_dish_name_layout)
+pp_s2_layout.add_widget(pp_s2_final_weight_layout)
 pp_s2_layout.add_widget(log_s2)
-pp_s2_layout.add_widget(log_s2_reset_button) #, size_hint=(0.5, 0.5)
+pp_s2_layout.add_widget(pp_s2_button_layout) #, size_hint=(0.5, 0.5)
 
-popup_log_s2 = Popup(title='~ Добавлено ~', title_font=teremokfont, title_size=160, title_align='center', separator_color=(1,1,1,1), background_color=(0,0,0,0.75), content=pp_s2_layout, size_hint=(0.9, 0.9)) #, size=(400, 400)
+popup_log_s2 = Popup(title='~ Ингридиенты ~', title_font=teremokfont, title_size=160, title_align='center', separator_color=(1,1,1,1), background_color=(0,0,0,0.75), content=pp_s2_layout, size_hint=(0.9, 0.9)) #, size=(400, 400)
 
-log_s2_reset_button.bind(on_release=lambda instance: log_clear(the_path + 'caloriecount_s2.txt', the_path + 'log_s2.txt', log_s2, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2))
+#POPUP S2 Functions:
+def total_weight_suggestion():
+    log_s2_final_weight_input.text = str(round(float(total_weight_label_s2.text.split()[0])))
+    popup_log_s2.open()
+
+def clear_log_and_weight():
+    log_clear(the_path + 'caloriecount_s2.txt', the_path + 'log_s2.txt', log_s2, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2)
+    log_s2_final_weight_input.text = ''
+    
+#POPUP S2 Executables:
+log_s2_reset_button.bind(on_release=lambda instance: clear_log_and_weight())
+log_s2_add_button.bind(on_release=lambda instance: add_dish(log_s2_dish_name_input.text, float(log_s2_final_weight_input.text)))
 
 #Logic
-log_button_s2.bind(on_release=popup_log_s2.open)
+log_button_s2.bind(on_release=lambda instanse: total_weight_suggestion())
 dropdownmenu(ingredients_dict, food_menu_s2)
 selection_button_s2.bind(on_release=lambda instance: dropsearch(food_menu_s2, selection_button_s2, search_input_s2, food_sorter_s2, ingredients_dict))
-food_menu_s2.bind(on_select=lambda instance, x: dropdownbind(x, selection_button_s2, portion_input_s2))
+food_menu_s2.bind(on_select=lambda instance, x: dropdownbind(x, selection_button_s2, portion_input_s2, spacer1_s2))
 portion_input_s2.bind(on_text_validate=lambda instance: addition(the_path + 'caloriecount_s2.txt', the_path + 'log_s2.txt', log_s2, selection_button_s2, portion_input_s2, ingredients_dict, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2, search_input_s2, food_menu_s2, ' ккал',))
 add_button_s2.bind(on_press=lambda instance: addition(the_path + 'caloriecount_s2.txt', the_path + 'log_s2.txt', log_s2, selection_button_s2, portion_input_s2, ingredients_dict, calories_label_s2, total_weight_label_s2, calories_per_g_label_s2, protein_label_s2, fat_label_s2, carb_label_s2, search_input_s2, food_menu_s2, ' ккал',))
-final_weight_input_s2.bind(on_text_validate=lambda instance: setattr(calories_per_g_label_s2, 'text', str(round(float(calories_label_s2.text.split()[0])/float(final_weight_input_s2.text),2))))
 
+#RECIPESCREEN (Screen 3 - s3)
+recipe_sorter_s3 = {}
+
+RecipeScreen = Screen(name='Recipes')
+
+#Elements s3
+reset_s3 = Button(background_normal='Fenix.jpg', background_down='Fenix.jpg', size_hint=(0.65,1), pos_hint={'center_x': .5, 'center_y': .5})
+selection_button_s3 = Button(text='Выбрать Блюдо', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize) #, size_hint=(0.5, 0.5)
+recipe_menu_s3 = DropDown()
+search_input_s3 = TextInput(text='', multiline=False, font_name=teremokfont, font_size=120, size_hint=(0.25, 0.5)) #background_color=(0,0,0,0), foreground_color=(1,1,1,1),
+spacer1_s3 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
+recipe_label_s3 = Label(text='', font_name=teremokfont, font_size=90, color=(1,1,1,1), pos_hint={'center_x': .5, 'center_y': .5})
+spacer2_s3 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
+
+recipescreenlayout = BoxLayout(orientation='vertical')
+recipescreenlayout.add_widget(reset_s3)
+recipescreenlayout.add_widget(selection_button_s3)
+recipescreenlayout.add_widget(spacer1_s3)
+recipescreenlayout.add_widget(recipe_label_s3)
+recipescreenlayout.add_widget(spacer2_s3)
+
+RecipeScreen.add_widget(recipescreenlayout)
+
+#LOGIC
+dropdownmenu(recipe_dict, recipe_menu_s3)
+selection_button_s3.bind(on_release=lambda instance: dropsearch(recipe_menu_s3, selection_button_s3, search_input_s3, recipe_sorter_s3, recipe_dict))
+recipe_menu_s3.bind(on_select=lambda instance, x: dropdownbind(x, selection_button_s3, selection_button_s3, recipe_label_s3))
 
 #Screen Carousel
 carousel = Carousel(direction='right')
 carousel.add_widget(DietCounterScreen)
 carousel.add_widget(FoodCounterScreen)
+carousel.add_widget(RecipeScreen)
 
 class MainApp(App):
     def build(self):
