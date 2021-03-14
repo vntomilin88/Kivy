@@ -127,7 +127,7 @@ def food_add(dish_name, final_weight, calories, proteins, fats, carbs):
         
         if dish_name in food:
             dish_is_not_present = False
-            food = [dish_name.text,round(float(calories.text)/float(final_weight.text),2),round(float(proteins.text)/float(final_weight.text),2),round(float(fats.text)/float(final_weight.text),2),round(float(carbs.text)/float(final_weight.text),2)]
+            food = [dish_name.text,round(float(calories.text.split()[0])/float(final_weight.text),2),round(float(proteins.text.split()[0])/float(final_weight.text),2),round(float(fats.text.split()[0])/float(final_weight.text),2),round(float(carbs.text.split()[0])/float(final_weight.text),2)]
             food_list.append(food)
         else:
             food_list.append(food)
@@ -135,7 +135,7 @@ def food_add(dish_name, final_weight, calories, proteins, fats, carbs):
     csv.writer(open(the_path + 'Everyday.csv', 'w', newline='', encoding='utf-8'), delimiter=',').writerows(food_list)
           
     if dish_is_not_present:
-        csv.writer(open(the_path + 'Everyday.csv', 'a+', newline='', encoding='utf-8'), delimiter=',').writerow([dish_name.text,round(float(calories.text)/float(final_weight.text),2),round(float(proteins.text)/float(final_weight.text),2),round(float(fats.text)/float(final_weight.text),2),round(float(carbs.text)/float(final_weight.text),2)])
+        csv.writer(open(the_path + 'Everyday.csv', 'a+', newline='', encoding='utf-8'), delimiter=',').writerow([dish_name.text,round(float(calories.text.split()[0])/float(final_weight.text),2),round(float(proteins.text.split()[0])/float(final_weight.text),2),round(float(fats.text.split()[0])/float(final_weight.text),2),round(float(carbs.text.split()[0])/float(final_weight.text),2)])
     
     [dish_name.text, final_weight.text, calories.text, proteins.text, fats.text, carbs.text] = ['', '', '', '', '', '',]
     
@@ -392,23 +392,23 @@ FoodCounterScreen.add_widget(foodcounterscreenlayout)
 
 #Local Functions s2
 
-def add_dish(dish_name, final_weight):
-    dish_is_not_present = True
-    food_list = []
+# def add_dish(dish_name, final_weight):
+#     dish_is_not_present = True
+#     food_list = []
     
-    for food in list(csv.reader(open(the_path + 'Everyday.csv', encoding='utf-8'))):
+#     for food in list(csv.reader(open(the_path + 'Everyday.csv', encoding='utf-8'))):
         
-        if dish_name in food:
-            dish_is_not_present = False
-            food = [dish_name,round(float(calories_label_s2.text.split()[0])/float(final_weight),2),round(float(protein_label_s2.text.split()[0])/float(final_weight),2),round(float(fat_label_s2.text.split()[0])/float(final_weight),2),round(float(carb_label_s2.text.split()[0])/float(final_weight),2)]
-            food_list.append(food)
-        else:
-            food_list.append(food)
+#         if dish_name in food:
+#             dish_is_not_present = False
+#             food = [dish_name,round(float(calories_label_s2.text.split()[0])/float(final_weight),2),round(float(protein_label_s2.text.split()[0])/float(final_weight),2),round(float(fat_label_s2.text.split()[0])/float(final_weight),2),round(float(carb_label_s2.text.split()[0])/float(final_weight),2)]
+#             food_list.append(food)
+#         else:
+#             food_list.append(food)
     
-    csv.writer(open(the_path + 'Everyday.csv', 'w', newline='', encoding='utf-8'), delimiter=',').writerows(food_list)
+#     csv.writer(open(the_path + 'Everyday.csv', 'w', newline='', encoding='utf-8'), delimiter=',').writerows(food_list)
           
-    if dish_is_not_present:
-        csv.writer(open(the_path + 'Everyday.csv', 'a+', newline='', encoding='utf-8'), delimiter=',').writerow([dish_name,round(float(calories_label_s2.text.split()[0])/float(final_weight),2),round(float(protein_label_s2.text.split()[0])/float(final_weight),2),round(float(fat_label_s2.text.split()[0])/float(final_weight),2),round(float(carb_label_s2.text.split()[0])/float(final_weight),2)])
+#     if dish_is_not_present:
+#         csv.writer(open(the_path + 'Everyday.csv', 'a+', newline='', encoding='utf-8'), delimiter=',').writerow([dish_name,round(float(calories_label_s2.text.split()[0])/float(final_weight),2),round(float(protein_label_s2.text.split()[0])/float(final_weight),2),round(float(fat_label_s2.text.split()[0])/float(final_weight),2),round(float(carb_label_s2.text.split()[0])/float(final_weight),2)])
         
 #POPUP S2
 pp_s2_layout = BoxLayout(padding=0, orientation='vertical')
@@ -451,7 +451,7 @@ def clear_log_and_weight():
 #POPUP S2 Executables:
 log_s2_reset_button.bind(on_release=lambda instance: clear_log_and_weight())
 # log_s2_add_button.bind(on_release=lambda instance: add_dish(log_s2_dish_name_input.text, float(log_s2_final_weight_input.text)))
-log_s2_add_button.bind(on_release=lambda instance: food_add(log_s2_dish_name_input, log_s2_final_weight_input, )))
+log_s2_add_button.bind(on_release=lambda instance: food_add(log_s2_dish_name_input, log_s2_final_weight_input, calories_label_s2, protein_label_s2, fat_label_s2, carb_label_s2)) #calories, proteins, fats, carbs
 
 #Logic
 log_button_s2.bind(on_release=lambda instanse: total_weight_suggestion())
