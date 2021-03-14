@@ -38,8 +38,8 @@ mainmenufontsize = 120
 teremokfont = 'Teremok'
 local_path = 'Databases/'
 android_path = '/sdcard/Android/media/com.nextcloud.client/nextcloud/vntomilin88@oblaco.ddns.net%2Fnextcloud/Prima-Terra/Scripts/Calorie Counter App/Databases/'
-# the_path = android_path
-the_path = local_path
+the_path = android_path
+# the_path = local_path
 
 LabelBase.register(name='Teremok', fn_regular='Teremok.ttf') #, fn_bold=''
 
@@ -148,14 +148,12 @@ calorie_label_s0 = Label(text=open(the_path + 'caloriecount_s1.txt', mode='r', e
 log_label_s0 = Label(text=open(the_path + 'log_s1.txt', encoding='utf-8').read(), font_name=teremokfont, font_size=90, pos_hint={'center_x': .5, 'center_y': .5}) #open(the_path + 'log_s1.txt', encoding='utf-8').read()
 log_reset_button_s0 = Button(text='Отчистить', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize)
 spacer1_s0 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
-spacer2_s0 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
 
 mainscreenlayout = BoxLayout(orientation='vertical')
 mainscreenlayout.add_widget(submit_button_s0)
 mainscreenlayout.add_widget(calorie_label_s0)
-mainscreenlayout.add_widget(spacer1_s0)
 mainscreenlayout.add_widget(log_label_s0)
-mainscreenlayout.add_widget(spacer2_s0)
+mainscreenlayout.add_widget(spacer1_s0)
 mainscreenlayout.add_widget(log_reset_button_s0)
 
 MainScreen.add_widget(mainscreenlayout)
