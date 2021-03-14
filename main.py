@@ -147,11 +147,15 @@ submit_button_s0 = Button(background_normal='Fenix.jpg', background_down='Fenix.
 calorie_label_s0 = Label(text=open(the_path + 'caloriecount_s1.txt', mode='r', encoding='utf-8').readlines()[0], font_name=teremokfont, font_size=270, pos_hint={'center_x': .5, 'center_y': .5})
 log_label_s0 = Label(text=open(the_path + 'log_s1.txt', encoding='utf-8').read(), font_name=teremokfont, font_size=90, pos_hint={'center_x': .5, 'center_y': .5}) #open(the_path + 'log_s1.txt', encoding='utf-8').read()
 log_reset_button_s0 = Button(text='Отчистить', background_color=(0,0,0,0), font_name=teremokfont, font_size=mainmenufontsize)
+spacer1_s0 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
+spacer2_s0 = Label(text='Filler', font_name=teremokfont, color=(0,0,0,0), pos_hint={'center_x': .5, 'center_y': .5})
 
 mainscreenlayout = BoxLayout(orientation='vertical')
 mainscreenlayout.add_widget(submit_button_s0)
 mainscreenlayout.add_widget(calorie_label_s0)
+mainscreenlayout.add_widget(spacer1_s0)
 mainscreenlayout.add_widget(log_label_s0)
+mainscreenlayout.add_widget(spacer2_s0)
 mainscreenlayout.add_widget(log_reset_button_s0)
 
 MainScreen.add_widget(mainscreenlayout)
